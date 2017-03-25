@@ -2,7 +2,7 @@
 
 ## Pull from Udacity repo:
 
-# Extended Kalman Filter Project Starter Code
+# Unscented Kalman Filter Project Starter Code
 Self-Driving Car Engineer Nanodegree Program
 
 ---

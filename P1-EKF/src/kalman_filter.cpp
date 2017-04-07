@@ -18,20 +18,14 @@ void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
 }
 
 void KalmanFilter::Predict() {
-  /**
-  TODO:
-    * predict the state
-  */
+  /* TODO:predict the state */
   x_ = F_ * x_
   MatrixXd Ft = F_.transpose();
   P_ = F_ * P_ * Ft + Q_;
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
-  /**
-  TODO:
-    * update the state by using Kalman Filter equations
-  */
+  /* TODO: update the state by using Kalman Filter equations */
   
   I = MatrixXd::Identity(2, 2); //Create identity matrix (NOTE: UPDATE SIZE)
   

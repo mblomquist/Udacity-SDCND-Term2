@@ -19,9 +19,9 @@ void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
 
 void KalmanFilter::Predict() {
   /* TODO:predict the state */
-  x_ = F_ * x_
-  MatrixXd Ft = F_.transpose();
-  P_ = F_ * P_ * Ft + Q_;
+	  x_ = F_ * x_;
+	  MatrixXd Ft = F_.transpose();
+	  P_ = F_ * P_ * Ft + Q_;
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
@@ -47,7 +47,25 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
-	  VectorXd z_pred = H_ * x_;
+
+	  // account for polar data (change variable names)
+	  float temp_1 = sqrt(x_[0] * x_[0] + x_[1] * x_[1]);
+
+	  // check for division by 0
+	  if (fabs(temp_1) < 0.00001) {
+			temp_1 = 0.00001;
+	  }
+
+	  float temp_2 = atan2(x_[1] / x_[0]);
+	  float temp_3 = (x_[0] * x_[3] + x_[1] * x_[4]) / temp_1;
+
+	  // create vector for z_pred
+	  VectorXd z_pred(3, 1);
+
+	  // assign values to z_pred
+	  z_pred << temp_1, temp_2, temp_3;
+
+	  // compute kalman update as normal
 	  VectorXd y = z - z_pred;
 	  MatrixXd Ht = H_.transpose();
 	  MatrixXd S = H_ * P_ * Ht + R_;

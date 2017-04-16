@@ -22,20 +22,34 @@ FusionEKF::FusionEKF() {
   H_laser_ = MatrixXd(2, 4);
   Hj_ = MatrixXd(3, 4);
 
-  // measurement covariance matrix - laser
-  R_laser_ << 0.0225, 0,
-        0, 0.0225;
+  //measurement covariance matrix - laser
+  R_laser_ << 1.E-2, 0,
+		0, 4.E-2;
 
-  // measurement covariance matrix - radar
-  R_radar_ << 0.09, 0, 0,
-        0, 0.0009, 0,
-        0, 0, 0.09;
+  //measurement covariance matrix - radar
+  R_radar_ << 1.E-2, 0, 0,
+		0, 1.E-5, 0,
+		0, 0, 1.E-3;
 
   /**
   TODO:
     * Finish initializing the FusionEKF.
     * Set the process and measurement noises
   */
+
+  // Set the initial transition matrix F_
+  ekf_.F_ = MatrixXd(4, 4);
+  ekf_.F_ << 1, 0, 1, 0,
+		0, 1, 0, 1,
+		0, 0, 1, 0,
+		0, 0, 0, 1;
+
+  ekf_.P_ = MatrixXd(4, 4);
+  ekf_.P_ << 1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1000, 0,
+		0, 0, 0, 1000;
+
   // Set H matrix laser
   H_laser_ << 1, 0, 0, 0,
 		0, 1, 0, 0;
@@ -112,16 +126,20 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   float dt_3 = dt_2*dt;
   float dt_4 = dt_3*dt;
 
+  // update transition matrix
+  ekf_.F_(0, 2) = dt;
+  ekf_.F_(1, 3) = dt;
+
   // Set measurement noise
   float noise_ax = 10;
   float noise_ay = 10;
 
   // udate process covariance matrix
   ekf_.Q_ = MatrixXd(4, 4);
-  ekf_.Q_ = << dt_4*noise_ax / 4, 0, dt_3*noise_ax / 2, 0,
-		0, dt_4 * noise_ay / 4, 0, dt_3 * noise_ay / 2,
-		dt_3 * noise_ax / 2, 0, dt_2 * noise_ax, 0,
-		0, dt_3 * noise_ay / 2, 0, dt_2 * noise_ay;
+  ekf_.Q_ << dt_4 / 4 * noise_ax, 0, dt_3 / 2 * noise_ax, 0,
+		0, dt_4 / 4 * noise_ay, 0, dt_3 / 2 * noise_ay,
+		dt_3 / 2 * noise_ax, 0, dt_2*noise_ax, 0,
+		0, dt_3 / 2 * noise_ay, 0, dt_2*noise_ay;
 
   ekf_.Predict();
 

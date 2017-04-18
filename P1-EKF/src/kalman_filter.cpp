@@ -32,8 +32,7 @@ void KalmanFilter::Update(const VectorXd &z) {
 	  MatrixXd Ht = H_.transpose();
 	  MatrixXd S = H_ * P_ * Ht + R_;
 	  MatrixXd Si = S.inverse();
-	  MatrixXd PHt = P_ * Ht;
-	  MatrixXd K = PHt * Si;
+	  MatrixXd K = P_ * Ht * Si;
 
 	  //new estimate
 	  x_ = x_ + (K * y);
@@ -50,32 +49,38 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
 	  // account for polar data (change variable names)
 	  double temp_1 = sqrt(x_(0) * x_(0) + x_(1) * x_(1));
-	  double temp_2 = 0.0001;
-	  double temp_3 = 0.0001;
+	  double temp_2 = 0.0;
+	  double temp_3 = 0.0;
 
-	  // check for division by 0
 	  if (fabs(temp_1) > 0.0001) {
-			double temp_2 = atan(x_(1) / x_(0));
-			double temp_3 = ((x_(0) * x_(2) + x_(1) * x_(3)) / temp_1);
-
-			// create vector for z_pred
-			VectorXd hx(3, 1);
-
-			// assign values to z_pred
-			hx << temp_1, temp_2, temp_3;
-
-			// compute kalman update as normal
-			VectorXd y = z - hx;
-			MatrixXd Ht = H_.transpose();
-			MatrixXd S = H_ * P_ * Ht + R_;
-			MatrixXd Si = S.inverse();
-			MatrixXd PHt = P_ * Ht;
-			MatrixXd K = PHt * Si;
-
-			//new estimate
-			x_ = x_ + (K * y);
-			long x_size = x_.size();
-			MatrixXd I = MatrixXd::Identity(x_size, x_size);
-			P_ = (I - K * H_) * P_;
+			temp_2 = atan2(x_(1), x_(0));
+			temp_3 = ((x_(0) * x_(2) + x_(1) * x_(3)) / temp_1);
 	  }
+
+	  // create vector for z_pred
+	  VectorXd hx(3, 1);
+
+	  // assign values to z_pred
+	  hx << temp_1, temp_2, temp_3;
+
+	  // compute kalman update as normal
+	  VectorXd y = z - hx;
+
+	  // normalize y(1)
+	  double pi = 3.14159;
+
+	  if (fabs(y(1)) > pi) {
+			y(1) = fmod(y(1), pi) + (pi * y(1) / fabs(y(1)));
+	  }
+
+	  MatrixXd Ht = H_.transpose();
+	  MatrixXd S = H_ * P_ * Ht + R_;
+	  MatrixXd Si = S.inverse();
+	  MatrixXd K = P_ * Ht * Si;
+
+	  //new estimate
+	  x_ = x_ + (K * y);
+	  long x_size = x_.size();
+	  MatrixXd I = MatrixXd::Identity(x_size, x_size);
+	  P_ = (I - K * H_) * P_;
 }

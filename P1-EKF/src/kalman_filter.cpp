@@ -47,15 +47,25 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     * update the state by using Extended Kalman Filter equations
   */
 
-	  // account for polar data (change variable names)
-	  double temp_1 = sqrt(x_(0) * x_(0) + x_(1) * x_(1));
-	  double temp_2 = 0.0;
-	  double temp_3 = 0.0;
+  //recover state parameters
+	  double px = x_(0);
+	  double py = x_(1);
+	  double vx = x_(2);
+	  double vy = x_(3);
 
-	  if (fabs(temp_1) > 0.0001) {
-			temp_2 = atan2(x_(1), x_(0));
-			temp_3 = ((x_(0) * x_(2) + x_(1) * x_(3)) / temp_1);
+	  // check for 0 like values
+	  if (fabs(px) < 0.0001 && fabs(py) < 0.0001) {
+			px = 0.001;
+			py = 0.0001;
 	  }
+	  else if (fabs(px) < 0.0001) {
+			px = 0.0001;
+	  }
+
+	  // account for polar data (change variable names)
+	  double temp_1 = sqrt(px*px + py*py);
+	  double temp_2 = atan2(py, px);
+	  double temp_3 = (px*vx + py*vy) / temp_1;
 
 	  // create vector for z_pred
 	  VectorXd hx(3, 1);
@@ -69,8 +79,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	  // normalize y(1)
 	  double pi = 3.14159;
 
-	  if (fabs(y(1)) > pi) {
-			y(1) = fmod(y(1), pi) + (pi * y(1) / fabs(y(1)));
+	  while (y(1) < -pi) {
+			y(1) += 2 * pi;
+	  }
+
+	  while (y(1) > pi) {
+			y(1) -= 2 * pi;
 	  }
 
 	  MatrixXd Ht = H_.transpose();

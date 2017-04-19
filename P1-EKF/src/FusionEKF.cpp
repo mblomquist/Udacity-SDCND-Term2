@@ -12,8 +12,8 @@ using std::vector;
  * Constructor.
  */
 FusionEKF::FusionEKF() {
-  is_initialized_ = false;
 
+  is_initialized_ = false;
   previous_timestamp_ = 0;
 
   // initializing matrices
@@ -59,7 +59,7 @@ FusionEKF::FusionEKF() {
 /**
 * Destructor.
 */
-FusionEKF::~FusionEKF() {}
+FusionEKF::~FusionEKF() {}	  
 
 void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
@@ -83,11 +83,11 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       /**
       Convert radar from polar to cartesian coordinates and initialize state.
       */
-		  double rho = measurement_pack.raw_measurements_(0);
-		  double phi = measurement_pack.raw_measurements_(1);
+		  float rho = measurement_pack.raw_measurements_(0);
+		  float phi = measurement_pack.raw_measurements_(1);
 
-		  double px = rho*cos(phi);
-		  double py = rho*sin(phi);
+		  float px = rho*cos(phi);
+		  float py = rho*sin(phi);
 
 		  ekf_.x_ << px, py, 0, 0;
     }
@@ -98,8 +98,12 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		  ekf_.x_ << measurement_pack.raw_measurements_(0), measurement_pack.raw_measurements_(1), 0, 0;
     }
 
+	// initialize time stamp
+	previous_timestamp_ = measurement_pack.timestamp_;
+
     // done initializing, no need to predict or update
     is_initialized_ = true;
+
     return;
   }
 
@@ -114,23 +118,30 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Update the process noise covariance matrix.
      * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
    */
-
   // compute elapsed time
-  double dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
+  float dt = ((measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0);
+
   previous_timestamp_ = measurement_pack.timestamp_;
 
+
+  if (dt > 1) {
+		dt = 0.005;
+		cout << "override dt" << endl;
+  }
+  
+
   // calculate powers of dt to reduce repeated computation
-  double dt_2 = dt*dt;
-  double dt_3 = dt_2*dt;
-  double dt_4 = dt_3*dt;
+  float dt_2 = dt*dt;
+  float dt_3 = dt_2*dt;
+  float dt_4 = dt_3*dt;
 
   // update transition matrix
   ekf_.F_(0, 2) = dt;
   ekf_.F_(1, 3) = dt;
 
   // Set measurement noise
-  double noise_ax = 5;
-  double noise_ay = 5;
+  float noise_ax = 25;
+  float noise_ay = 25;
 
   // udate process covariance matrix
   ekf_.Q_ << dt_4 * noise_ax / 4, 0, dt_3 * noise_ax / 2, 0,

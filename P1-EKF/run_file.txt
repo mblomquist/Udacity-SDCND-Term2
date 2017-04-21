@@ -1,0 +1,3 @@
+ExtendedKF.exe C:\Users\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P1-EKF\data\sample-laser-radar-measurement-data-1.txt output.txt
+
+python kalman-tracker.py C:\Users\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P1-EKF\build\Debug\ExtendedKF.exe

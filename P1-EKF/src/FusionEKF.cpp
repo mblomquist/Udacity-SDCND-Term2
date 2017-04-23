@@ -54,9 +54,6 @@ FusionEKF::FusionEKF() {
 		0, 0, 1000, 0,
 		0, 0, 0, 1000;
 
-  // Set measurement noise
-  float noise_ax = 25;
-  float noise_ay = 25;
 }
 
 /**
@@ -123,9 +120,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
    */
   // compute elapsed time
   float dt = ((measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0);
-
   previous_timestamp_ = measurement_pack.timestamp_;
-  
+
   // calculate powers of dt to reduce repeated computation
   float dt_2 = dt*dt;
   float dt_3 = dt_2*dt;
@@ -134,6 +130,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
   // update transition matrix
   ekf_.F_(0, 2) = dt;
   ekf_.F_(1, 3) = dt;
+
+  // Set measurement noise
+  float noise_ax = 25;
+  float noise_ay = 25;
 
   // udate process covariance matrix
   ekf_.Q_ << dt_4 * noise_ax / 4, 0, dt_3 * noise_ax / 2, 0,

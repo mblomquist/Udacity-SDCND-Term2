@@ -52,6 +52,23 @@ UKF::UKF() {
 
   Hint: one or more values initialized above might be wildly off...
   */
+  ///* Weights of sigma points
+  weights_ = 0; // update parameter initilization. Should be vector.
+
+  ///* State dimension
+  n_x_ = 0; // update parameter initilization. Should be integer.
+
+  ///* Augmented state dimension
+  n_aug_ = 0; // update parameter initilization. Should be integer.
+
+  ///* Sigma point spreading parameter
+  lambda_ = 0.0; // update parameter initilization. Should be double.
+
+  ///* the current NIS for radar
+  NIS_radar_ = 1.0; // update parameter initilization. Should be double.
+
+  ///* the current NIS for laser
+  NIS_laser_ = 1.0; // update parameter initilization. Should be double.
 }
 
 UKF::~UKF() {}

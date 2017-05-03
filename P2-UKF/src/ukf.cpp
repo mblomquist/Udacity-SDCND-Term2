@@ -84,6 +84,49 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
   Complete this function! Make sure you switch between lidar and radar
   measurements.
   */
+	  if (!is_initialized_) {
+
+			// create initial measurement
+			cout << "UKF: " << endl;
+
+			if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
+				  // Convert from polar to cartesian
+				  float rho = measurement_pack.raw_measurements_[0];
+				  float phi = measurement_pack.raw_measurements_[1];
+				  float drho = measurement_pack.raw_measurements_[2];
+
+				  float px = rho * cos(phi);
+				  float py = rho * sin(phi);
+				  float vx = rho_dot * cos(phi);
+				  float vy = rho_dot * sin(phi);
+				  float v = sqrt(vx * vx + vy * vy);
+
+				  x_ << px, py, v, 0, 0;
+			}
+			else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
+				  x_ << measurement_pack.raw_measurements_[0], measurement_pack.raw_measurements_[1], 0, 0, 0;
+			}
+
+			if (fabs(x_(0)) < 0.0001 && fabs(x_(1) < 0.0001) {
+				  x_(0) = 0.0001;
+				  x_(1) = 0.0001;
+			}
+
+			// Initialize weights
+			weights_(0) = lambda_ / (lambda_ + n_aug_);
+
+			for (int i = 1; i < weights_.size(); i++) {
+				  weights_(i) = 0.5 / (n_aug_ + lambda_);
+			}
+
+			// Save the initiall timestamp for dt calculation
+			time_us_ = measurement_pack.timestamp_;
+
+			// Done initializing, no need to predict or update
+			is_initialized_ = true;
+	  }
+
+
 }
 
 /**

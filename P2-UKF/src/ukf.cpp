@@ -12,6 +12,7 @@ using std::vector;
 * Initializes Unscented Kalman filter
 */
 UKF::UKF() {
+
       // if this is false, laser measurements will be ignored (except during init)
       use_laser_ = true;
 
@@ -23,10 +24,11 @@ UKF::UKF() {
 
       // initial covariance matrix
       P_ = MatrixXd(5, 5);
-      P_ << 1, 0, 0, 0, 0,
-            0, 1, 0, 0, 0,
-            0, 0, 1, 0, 0,
-            0, 0, 0, 1, 0;
+	  P_ << 1, 0, 0, 0, 0,
+			0, 1, 0, 0, 0,
+			0, 0, 1, 0, 0,
+			0, 0, 0, 1, 0,
+			0, 0, 0, 0, 1;
 
       // Process noise standard deviation longitudinal acceleration in m/s^2
       std_a_ = 1.5; // barrowed value -- test
@@ -65,7 +67,7 @@ UKF::UKF() {
       lambda_ = 3 - n_x_;
 
       // Sigma Point Matrix
-      Xsig_pred_ = MatrixXd(n_x_, 2 * n_x_ + 1);
+      Xsig_pred_ = MatrixXd(n_x_, 2 * n_aug_ + 1);
 
       // Measurement Noise Covariance Matricies
       R_laser_ = MatrixXd(2, 2);
@@ -85,6 +87,10 @@ UKF::UKF() {
 
       // Current NIS for Laser
       NIS_laser_ = 0.0;
+
+	  // Set Initialization
+	  is_initialized_ = false;
+
 }
 
 UKF::~UKF() {}
@@ -119,6 +125,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
 
                   // State Vector, CTRV model: px, py, v (magnitude), phi, phi_dot
                   x_ << px, py, drho, phi, 0;
+
             }
             else if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
 
@@ -146,10 +153,10 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
       time_us_ = meas_package.timestamp_;
 
       // Perform prediction step if timestep is larger than 0.001
-      if (delta_t > 0.001) {
+      /*if (delta_t > 0.001) {
             Prediction(delta_t);
-      }
-
+      }*/
+	  Prediction(delta_t);
       /*****************************************************************************
       * Update Step
       *****************************************************************************/
@@ -256,7 +263,6 @@ void UKF::Prediction(double delta_t) {
       /*****************************************************************************
       * Predict Mean and Covariance
       *****************************************************************************/
-
       // set weights
       double weight_0 = lambda_ / (lambda_ + n_aug_);
       weights_(0) = weight_0;

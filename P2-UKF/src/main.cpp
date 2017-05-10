@@ -65,7 +65,6 @@ int main(int argc, char* argv[]) {
   /**********************************************
    *  Set Measurements                          *
    **********************************************/
-
   vector<MeasurementPackage> measurement_pack_list;
   vector<GroundTruthPackage> gt_pack_list;
 
@@ -128,7 +127,6 @@ int main(int argc, char* argv[]) {
       gt_package.gt_values_ << x_gt, y_gt, vx_gt, vy_gt;
       gt_pack_list.push_back(gt_package);
   }
-
   // Create a UKF instance
   UKF ukf;
 

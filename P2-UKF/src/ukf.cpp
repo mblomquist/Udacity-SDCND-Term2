@@ -24,19 +24,19 @@ UKF::UKF() {
 
       // initial covariance matrix
       P_ = MatrixXd(5, 5);
-	  P_ << 1, 0, 0, 0, 0,
-			0, 1, 0, 0, 0,
-			0, 0, 1, 0, 0,
-			0, 0, 0, 1, 0,
-			0, 0, 0, 0, 1;
+      P_ << 1, 0, 0, 0, 0,
+            0, 1, 0, 0, 0,
+            0, 0, 1, 0, 0,
+            0, 0, 0, 1, 0,
+            0, 0, 0, 0, 1;
 
       // Process noise standard deviation longitudinal acceleration in m/s^2
       std_a_ = 1.5; // barrowed value -- test
 
-      // Process noise standard deviation yaw acceleration in rad/s2^
+                    // Process noise standard deviation yaw acceleration in rad/s2^
       std_yawdd_ = 0.57; // barrowed value -- test
 
-      // Laser measurement noise standard deviation position1 in m
+                         // Laser measurement noise standard deviation position1 in m
       std_laspx_ = 0.15;
 
       // Laser measurement noise standard deviation position2 in m
@@ -72,12 +72,12 @@ UKF::UKF() {
       // Measurement Noise Covariance Matricies
       R_laser_ = MatrixXd(2, 2);
       R_laser_ << std_laspx_*std_laspx_, 0,
-                  0, std_laspy_*std_laspy_;
+            0, std_laspy_*std_laspy_;
 
       R_radar_ = MatrixXd(3, 3);
       R_radar_ << std_radr_*std_radr_, 0, 0,
-                  0, std_radphi_*std_radphi_, 0,
-                  0, 0, std_radrd_*std_radrd_;
+            0, std_radphi_*std_radphi_, 0,
+            0, 0, std_radrd_*std_radrd_;
 
       // Weights of sigma points
       weights_ = VectorXd(2 * n_aug_ + 1);
@@ -88,8 +88,8 @@ UKF::UKF() {
       // Current NIS for Laser
       NIS_laser_ = 0.0;
 
-	  // Set Initialization
-	  is_initialized_ = false;
+      // Set Initialization
+      is_initialized_ = false;
 
 }
 
@@ -134,8 +134,13 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
             }
 
             // Check for small values
-            if (x_(0) < 0.0001) x_(0) = 0.0001;
-            if (x_(1) < 0.0001) x_(1) = 0.0001;
+            if (fabs(x_(0) < 0.0001 && fabs(x_(0) < 0.0001)) {
+                  /* 
+                  * If measurement is next to the sensor, use small values for px and py.
+                  */
+                  x_(0) = 0.0001;
+                  x_(1) = 0.0001;
+            }
 
             // Save the initial timestamp for dt calculation
             time_us_ = meas_package.timestamp_;
@@ -153,10 +158,10 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
       time_us_ = meas_package.timestamp_;
 
       // Perform prediction step if timestep is larger than 0.001
-      /*if (delta_t > 0.001) {
+      if (delta_t > 0.001) {
             Prediction(delta_t);
-      }*/
-	  Prediction(delta_t);
+      }
+
       /*****************************************************************************
       * Update Step
       *****************************************************************************/
@@ -396,7 +401,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
       //transform sigma points into measurement space
       for (int i = 0; i < 2 * n_aug_ + 1; i++) {  //2n+1 simga points
 
-            // extract values for better readibility
+                                                  // extract values for better readibility
             double p_x = Xsig_pred_(0, i);
             double p_y = Xsig_pred_(1, i);
             double v = Xsig_pred_(2, i);
@@ -406,9 +411,18 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
             double v2 = sin(yaw)*v;
 
             // measurement model
-            Zsig(0, i) = sqrt(p_x*p_x + p_y*p_y);                       //r
-            Zsig(1, i) = atan2(p_y, p_x);                               //phi
-            Zsig(2, i) = (p_x*v1 + p_y*v2) / sqrt(p_x*p_x + p_y*p_y);   //r_dot
+            Zsig(0, i) = sqrt(p_x*p_x + p_y*p_y);                       // rho
+
+            // Check for 0 values (Numerical stability)
+            if (fabs(p_x < 0.001 && p_y < 0.001)) {
+                  Zsig(1, i) = 0;  // If p_x and p_y == 0, set phi to 0;
+                  Zsig(2, i) = 0;  // If p_x and p_y == 0, set rho_dot to 0;
+            }
+            else {
+                  Zsig(1, i) = atan2(p_y, p_x);                               // phi
+                  Zsig(2, i) = (p_x*v1 + p_y*v2) / sqrt(p_x*p_x + p_y*p_y);   // rho_dot
+            }
+            
       }
 
       // mean predicted measurement

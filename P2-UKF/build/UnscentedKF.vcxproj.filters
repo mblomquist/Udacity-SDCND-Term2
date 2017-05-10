@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P2-UKF\src\ukf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P2-UKF\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P2-UKF\src\tools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P2-UKF\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{0ECA6475-AAFA-3DA2-B701-3A4438042212}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

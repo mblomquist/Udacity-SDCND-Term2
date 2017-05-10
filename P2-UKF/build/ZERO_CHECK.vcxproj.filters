@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P2-UKF\build\CMakeFiles\639643ec400a6d8a898a4503226b5148\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{366ABE9D-464E-333F-93EE-13380427A845}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

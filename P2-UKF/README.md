@@ -32,4 +32,4 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## Project Description and Results
 
-- TODO.
+- Update build instructions with Visual Studio Project Information.

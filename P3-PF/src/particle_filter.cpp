@@ -9,7 +9,10 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+
+#define _USE_MATH_DEFINES
 #include <math.h> 
+
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -196,21 +199,21 @@ void ParticleFilter::resample() {
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
 
-    // Create random index generator where the probability of each particle index to be selected
+          // Create random index generator where the probability of each particle index to be selected
     // is equivalent to its weight.
-      std::default_random_engine gen;
-      std::discrete_distribution<int> d(weights.begin(), weights.end());
+    std::default_random_engine gen;
+    std::discrete_distribution<int> d(weights.begin(), weights.end());
 
-      // temporary list to store re-sampled particles
-      std::vector<Particle> resampled_particles;
-      resampled_particles.reserve(num_particles);
+    // temporary list to store re-sampled particles
+    std::vector<Particle> resampled_particles;
+    resampled_particles.reserve( num_particles );
 
-      // generate a random index and append the corresponding particle to the re-sampling list
-      for (int i = 0; i < num_particles; ++i)
-            resampled_particles.push_back(particles[d(gen)]);
+    // generate a random index and append the corresponding particle to the re-sampling list
+    for (int i = 0; i < num_particles; ++i)
+        resampled_particles.push_back( particles[d(gen)] );
 
-      // replace the old particles with the re-sampled particles
-      particles = resampled_particles;
+    // replace the old particles with the re-sampled particles
+    particles = resampled_particles;
 }
 
 Particle ParticleFilter::SetAssociations(Particle particle, std::vector<int> associations, std::vector<double> sense_x, std::vector<double> sense_y)

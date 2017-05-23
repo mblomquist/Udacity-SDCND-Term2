@@ -130,11 +130,12 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
       double std_x = std_landmark[0];
       double std_y = std_landmark[1];
 
+      double PI = 3.14159;
+
+      double c = 0.5 / (PI*std_x*std_y);
+
       if (std_x < 0.001 || std_y < 0.001) {
-            double c = 1;
-      }
-      else {
-            double c = 0.5 / (M_PI*std_x*std_y);
+            c = 0.000001;
       }
 
       for (Particle &p : particles)

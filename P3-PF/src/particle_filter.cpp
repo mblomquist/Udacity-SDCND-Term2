@@ -130,9 +130,7 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
       double std_x = std_landmark[0];
       double std_y = std_landmark[1];
 
-      double PI = 3.14159;
-
-      double c = 0.5 / (PI*std_x*std_y);
+      double c = 0.5 / (M_PI*std_x*std_y);
 
       if (std_x < 0.001 || std_y < 0.001) {
             c = 0.000001;
@@ -217,49 +215,12 @@ void ParticleFilter::resample() {
     particles = resampled_particles;
 }
 
-Particle ParticleFilter::SetAssociations(Particle particle, std::vector<int> associations, std::vector<double> sense_x, std::vector<double> sense_y)
-{
-	//particle: the particle to assign each listed association, and association's (x,y) world coordinates mapping to
-	// associations: The landmark id that goes along with each listed association
-	// sense_x: the associations x mapping already converted to world coordinates
-	// sense_y: the associations y mapping already converted to world coordinates
-
-	//Clear the previous associations
-	particle.associations.clear();
-	particle.sense_x.clear();
-	particle.sense_y.clear();
-
-	particle.associations= associations;
- 	particle.sense_x = sense_x;
- 	particle.sense_y = sense_y;
-
- 	return particle;
-}
-
-string ParticleFilter::getAssociations(Particle best)
-{
-	vector<int> v = best.associations;
-	stringstream ss;
-    copy( v.begin(), v.end(), ostream_iterator<int>(ss, " "));
-    string s = ss.str();
-    s = s.substr(0, s.length()-1);  // get rid of the trailing space
-    return s;
-}
-string ParticleFilter::getSenseX(Particle best)
-{
-	vector<double> v = best.sense_x;
-	stringstream ss;
-    copy( v.begin(), v.end(), ostream_iterator<float>(ss, " "));
-    string s = ss.str();
-    s = s.substr(0, s.length()-1);  // get rid of the trailing space
-    return s;
-}
-string ParticleFilter::getSenseY(Particle best)
-{
-	vector<double> v = best.sense_y;
-	stringstream ss;
-    copy( v.begin(), v.end(), ostream_iterator<float>(ss, " "));
-    string s = ss.str();
-    s = s.substr(0, s.length()-1);  // get rid of the trailing space
-    return s;
+void ParticleFilter::write(std::string filename) {
+      // You don't need to modify this file.
+      std::ofstream dataFile;
+      dataFile.open(filename, std::ios::app);
+      for (int i = 0; i < num_particles; ++i) {
+            dataFile << particles[i].x << " " << particles[i].y << " " << particles[i].theta << "\n";
+      }
+      dataFile.close();
 }

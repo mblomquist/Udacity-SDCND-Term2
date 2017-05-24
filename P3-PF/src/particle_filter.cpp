@@ -27,11 +27,17 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	//   x, y, theta and their uncertainties from GPS) and all weights to 1. 
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
+
+	  // Set number of particles
       num_particles = 100;
+
+	  // Initialize weights
 	  weights.resize(num_particles);
 
+	  // Initialize random gen
       default_random_engine gen;
 
+	  // Initialize distributions
 	  normal_distribution<double> dist_x(x, std[0]);
 	  normal_distribution<double> dist_y(y, std[1]);
 	  normal_distribution<double> dist_theta(theta, std[2]);
@@ -59,14 +65,16 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
 	//  http://en.cppreference.com/w/cpp/numeric/random/normal_distribution
 	//  http://www.cplusplus.com/reference/random/default_random_engine/
 
+	  // Initialize random gen
       default_random_engine gen;
-      normal_distribution<double>
-            x_dist(0.0, std_pos[0]),
-            y_dist(0.0, std_pos[1]),
-            theta_dist(0.0, std_pos[2]);
 
+	  // Create normal distributions
+      normal_distribution<double> x_dist(0.0, std_pos[0]), y_dist(0.0, std_pos[1]), theta_dist(0.0, std_pos[2]);
+
+	  // Run particle prediction loop
       for (Particle &p : particles) {
 
+			// Check for divition by zero
             if (fabs(yaw_rate) > .001) {
                   p.x += (velocity / yaw_rate) * (sin(p.theta + yaw_rate * delta_t) - sin(p.theta));
                   p.y += (velocity / yaw_rate) * (cos(p.theta) - cos(p.theta + yaw_rate*delta_t));
@@ -78,6 +86,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
                   p.theta += yaw_rate * delta_t;
             }
 
+			// Update probabilities
             p.x += x_dist(gen);
             p.y += y_dist(gen);
             p.theta += theta_dist(gen);
@@ -130,55 +139,96 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	//   for the fact that the map's y-axis actually points downwards.)
 	//   http://planning.cs.uiuc.edu/node99.html
     
+    // Significant help form NikolasEnt @ https://github.com/NikolasEnt/Particle-Filter/blob/master/src/particle_filter.cpp
+    // Some clean up required.
+
+	// Create constants to reduce repeat computation
 	const double sigma_xx = std_landmark[0] * std_landmark[0];
 	const double sigma_yy = std_landmark[1] * std_landmark[1];
 	const double k = 2 * M_PI * std_landmark[0] * std_landmark[1];
+
+	// Set initial values for computation
 	double dx = 0.0;
 	double dy = 0.0;
-	double sum_w = 0.0; // Sum of weights for future weights normalization
+	double sum_w = 0.0;
+
+	// Create loop to update weights
 	for (int i = 0; i < num_particles; i++) {
 
-		  double weight_no_exp = 0.0;
+		  // Create variable weight to improve computation
+		  double weight_temp = 0.0;
+
+		  // Create const values to reduce computation
 		  const double sin_theta = sin(particles[i].theta);
 		  const double cos_theta = cos(particles[i].theta);
+
+		  // Start the observations loop
 		  for (int j = 0; j < observations.size(); j++) {
 
-				  // Observation measurement transformations
-				  LandmarkObs observation;
-				  observation.id = observations[j].id;
-				  observation.x = particles[i].x + (observations[j].x * cos_theta) - (observations[j].y * sin_theta);
-				  observation.y = particles[i].y + (observations[j].x * sin_theta) + (observations[j].y * cos_theta);
+				// Observation measurement transformations
+				LandmarkObs observation;
+				observation.id = observations[j].id;
+				observation.x = particles[i].x + (observations[j].x * cos_theta) - (observations[j].y * sin_theta);
+				observation.y = particles[i].y + (observations[j].x * sin_theta) + (observations[j].y * cos_theta);
 
-				  // Unefficient way for observation asossiation to landmarks. It can be improved.
-				  bool in_range = false;
-				  Map::single_landmark_s nearest_lm;
-				  double nearest_dist = 10000000.0; // A big number
-				  for (int k = 0; k < map_landmarks.landmark_list.size(); k++) {
-						Map::single_landmark_s cond_lm = map_landmarks.landmark_list[k];
-						double distance = dist(cond_lm.x_f, cond_lm.y_f, observation.x, observation.y);  // Calculate the Euclidean distance between two 2D points
-						if (distance < nearest_dist) {
-							  nearest_dist = distance;
-							  nearest_lm = cond_lm;
+				// Set in_range value to false
+				bool in_range = false;
+
+				// Initialize nearest landmark
+				Map::single_landmark_s nearest_lm;
+
+				// Set initial threshold for distance to landmark -- Start big.
+				double nearest_dist = 10000000.0;
+
+				// Run nearest neightbor search
+				for (int k = 0; k < map_landmarks.landmark_list.size(); k++) {
+
+					  // Set temp landmark
+					  Map::single_landmark_s temp_lm = map_landmarks.landmark_list[k];
+
+					  // Calulate distance between landmark and oberservation
+					  double distance = dist(temp_lm.x_f, temp_lm.y_f, observation.x, observation.y);
+						
+					  // Check for shorter distance
+					  if (distance < nearest_dist) {
+
+							// Set new threshold for nearest distance
+							nearest_dist = distance;
+
+							// Set new condition for temp landmark
+							nearest_lm = temp_lm;
+
+							  // Check if distance is within sensor range
 							  if (distance < sensor_range) {
 									in_range = true;
 							  }
 						}
 				  }
 
+				  // Update weight variable if distance < sensor_range is found
 				  if (in_range) {
+
+						// Calculate distance from observation to nearest landmark
 						dx = observation.x - nearest_lm.x_f;
 						dy = observation.y - nearest_lm.y_f;
-						weight_no_exp += dx * dx / sigma_xx + dy * dy / sigma_yy;
+
+						// Add to temp weight
+						weight_temp += dx * dx / sigma_xx + dy * dy / sigma_yy;
 				  }
 
+				  // Set weight high is not found
 				  else {
-						weight_no_exp += 100; // approx = 0 after exp()
+						weight_temp += 100;
 				  }
 			}
-			particles[i].weight = exp(-0.5*weight_no_exp); // calculate exp() after main computation in order to optimize the code
-			sum_w += particles[i].weight;
+
+
+		  // Calculate particle weight after loop to reduce computational time.
+		  particles[i].weight = exp(-0.5*weight_temp);
+		  sum_w += particles[i].weight;
 	  }
-	  // Weights normalization to sum(weights)=1
+
+	  // Normalize weights to sum to 1
 	  for (int i = 0; i < num_particles; i++) {
 			particles[i].weight /= sum_w * k;
 			weights[i] = particles[i].weight;
@@ -193,21 +243,26 @@ void ParticleFilter::resample() {
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
 
-	std::random_device rd_wts;
-	std::mt19937 generator_wts(rd_wts());
+	  // Help from Vivek Yadav @ https://github.com/vxy10/P3T2SCND_KidnappedCar/blob/master/src/particle_filter.cpp
+	  // Create a random device
+	  std::random_device r_weights;
+	  std::mt19937 g_weights(r_weights());
 
-	// Creates a discrete distribution for weight.
-	std::discrete_distribution<int> distribution_wts(weights.begin(), weights.end());
-	std::vector<Particle> resampled_particles;
+	  // Creates a discrete distribution for weight.
+	  std::discrete_distribution<int> d_weights(weights.begin(), weights.end());
+	  std::vector<Particle> resampled_particles;
 
-	// Resample
-	for (int i = 0; i<num_particles; i++) {
-		  Particle particles_i = particles[distribution_wts(generator_wts)];
-		  resampled_particles.push_back(particles_i);
-	}
-	particles = resampled_particles;
+	  // Resample particles
+	  for (int i = 0; i<num_particles; i++) {
 
-	return;
+			Particle particles_i = particles[d_weights(g_weights)];
+		    resampled_particles.push_back(particles_i);
+	  }
+	  
+	  // Set particles to resampled values
+	  particles = resampled_particles;
+
+	  return;
 }
 
 void ParticleFilter::write(std::string filename) {

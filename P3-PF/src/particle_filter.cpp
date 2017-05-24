@@ -28,13 +28,13 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
 	// Add random Gaussian noise to each particle.
 	// NOTE: Consult particle_filter.h for more information about this method (and others in this file).
       num_particles = 100;
+	  weights.resize(num_particles);
 
       default_random_engine gen;
 
-      normal_distribution<double>
-            dist_x(x, std[0]),
-            dist_y(y, std[1]),
-            dist_theta(theta, std[2]);
+	  normal_distribution<double> dist_x(x, std[0]);
+	  normal_distribution<double> dist_y(y, std[1]);
+	  normal_distribution<double> dist_theta(theta, std[2]);
 
       // Reserve Space for Number of Particles
       particles.reserve(num_particles);
@@ -43,10 +43,14 @@ void ParticleFilter::init(double x, double y, double theta, double std[]) {
       for (int i = 0; i < num_particles; i++) {
             Particle p_init = { 0, dist_x(gen), dist_y(gen), dist_theta(gen), 1 };
             particles.push_back(p_init);
+			weights[i] = 1.0;
       }
 
       // Mark Initialized
       is_initialized = true;
+
+	  return;
+
 }
 
 void ParticleFilter::prediction(double delta_t, double std_pos[], double velocity, double yaw_rate) {
@@ -81,6 +85,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[], double velocit
       }
 
       return;
+
 }
 
 void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::vector<LandmarkObs>& observations) {
@@ -108,6 +113,7 @@ void ParticleFilter::dataAssociation(std::vector<LandmarkObs> predicted, std::ve
       }
 
       return;
+
 }
 
 void ParticleFilter::updateWeights(double sensor_range, double std_landmark[], 
@@ -123,71 +129,60 @@ void ParticleFilter::updateWeights(double sensor_range, double std_landmark[],
 	//   3.33. Note that you'll need to switch the minus sign in that equation to a plus to account 
 	//   for the fact that the map's y-axis actually points downwards.)
 	//   http://planning.cs.uiuc.edu/node99.html
+    
+	const double sigma_xx = std_landmark[0] * std_landmark[0];
+	const double sigma_yy = std_landmark[1] * std_landmark[1];
+	const double k = 2 * M_PI * std_landmark[0] * std_landmark[1];
+	double dx = 0.0;
+	double dy = 0.0;
+	double sum_w = 0.0; // Sum of weights for future weights normalization
+	for (int i = 0; i < num_particles; i++) {
 
-      weights.clear();
-      weights.reserve(num_particles);
+		  double weight_no_exp = 0.0;
+		  const double sin_theta = sin(particles[i].theta);
+		  const double cos_theta = cos(particles[i].theta);
+		  for (int j = 0; j < observations.size(); j++) {
 
-      double std_x = std_landmark[0];
-      double std_y = std_landmark[1];
+				  // Observation measurement transformations
+				  LandmarkObs observation;
+				  observation.id = observations[j].id;
+				  observation.x = particles[i].x + (observations[j].x * cos_theta) - (observations[j].y * sin_theta);
+				  observation.y = particles[i].y + (observations[j].x * sin_theta) + (observations[j].y * cos_theta);
 
-      double c = 0.5 / (M_PI*std_x*std_y);
+				  // Unefficient way for observation asossiation to landmarks. It can be improved.
+				  bool in_range = false;
+				  Map::single_landmark_s nearest_lm;
+				  double nearest_dist = 10000000.0; // A big number
+				  for (int k = 0; k < map_landmarks.landmark_list.size(); k++) {
+						Map::single_landmark_s cond_lm = map_landmarks.landmark_list[k];
+						double distance = dist(cond_lm.x_f, cond_lm.y_f, observation.x, observation.y);  // Calculate the Euclidean distance between two 2D points
+						if (distance < nearest_dist) {
+							  nearest_dist = distance;
+							  nearest_lm = cond_lm;
+							  if (distance < sensor_range) {
+									in_range = true;
+							  }
+						}
+				  }
 
-      if (std_x < 0.001 || std_y < 0.001) {
-            c = 0.000001;
-      }
+				  if (in_range) {
+						dx = observation.x - nearest_lm.x_f;
+						dy = observation.y - nearest_lm.y_f;
+						weight_no_exp += dx * dx / sigma_xx + dy * dy / sigma_yy;
+				  }
 
-      for (Particle &p : particles)
-      {
-            std::vector<LandmarkObs> landmarks_in_sensor_range;
-            std::vector<LandmarkObs> observations_in_map_coords;
-            observations_in_map_coords.reserve(observations.size());
-
-            // transform observations into map coordinates using the perspective of the current particle
-            for (const LandmarkObs &obs : observations)
-            {
-                  LandmarkObs transformed_obs;
-
-                  transformed_obs.id = 0;
-                  transformed_obs.x = p.x + obs.x * cos(p.theta) - obs.y * sin(p.theta);
-                  transformed_obs.y = p.y + obs.x * sin(p.theta) + obs.y * cos(p.theta);
-
-                  observations_in_map_coords.push_back(transformed_obs);
-            }
-
-            // find landmarks in the map which are within sensor_range of the current particle
-            for (const Map::single_landmark_s &lm : map_landmarks.landmark_list)
-            {
-                  if (dist(p.x, p.y, lm.x_f, lm.y_f) <= sensor_range)
-                  {
-                        LandmarkObs lm_tmp = { lm.id_i, lm.x_f, lm.y_f };
-                        landmarks_in_sensor_range.push_back(lm_tmp);
-                  }
-            }
-
-            // associate in-range landmarks with transformed sensor readings
-            dataAssociation(observations_in_map_coords, landmarks_in_sensor_range);
-
-            // calculate the weight of the particle
-            double prob = 1.0;
-
-            for (const LandmarkObs &lm : landmarks_in_sensor_range)
-            {
-                  const LandmarkObs &closest_obs = observations_in_map_coords[lm.id];
-
-                  const double x_diff = pow((closest_obs.x - lm.x) / std_x, 2),
-                        y_diff = pow((closest_obs.y - lm.y) / std_y, 2);
-
-                  prob *= c * exp(-0.5 * (x_diff + y_diff));
-
-                  // Don't let a particle have zero probability of being chosen
-                  if (prob < 1e-4)
-                        break;
-            }
-
-            // store the probability of this particle being real in the weight member and the weights_ vector.
-            p.weight = prob;
-            weights.push_back(prob);
-      } // end particle loop
+				  else {
+						weight_no_exp += 100; // approx = 0 after exp()
+				  }
+			}
+			particles[i].weight = exp(-0.5*weight_no_exp); // calculate exp() after main computation in order to optimize the code
+			sum_w += particles[i].weight;
+	  }
+	  // Weights normalization to sum(weights)=1
+	  for (int i = 0; i < num_particles; i++) {
+			particles[i].weight /= sum_w * k;
+			weights[i] = particles[i].weight;
+	  }
 
       return;
             
@@ -198,21 +193,21 @@ void ParticleFilter::resample() {
 	// NOTE: You may find std::discrete_distribution helpful here.
 	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
 
-          // Create random index generator where the probability of each particle index to be selected
-    // is equivalent to its weight.
-    std::default_random_engine gen;
-    std::discrete_distribution<int> d(weights.begin(), weights.end());
+	std::random_device rd_wts;
+	std::mt19937 generator_wts(rd_wts());
 
-    // temporary list to store re-sampled particles
-    std::vector<Particle> resampled_particles;
-    resampled_particles.reserve( num_particles );
+	// Creates a discrete distribution for weight.
+	std::discrete_distribution<int> distribution_wts(weights.begin(), weights.end());
+	std::vector<Particle> resampled_particles;
 
-    // generate a random index and append the corresponding particle to the re-sampling list
-    for (int i = 0; i < num_particles; ++i)
-        resampled_particles.push_back( particles[d(gen)] );
+	// Resample
+	for (int i = 0; i<num_particles; i++) {
+		  Particle particles_i = particles[distribution_wts(generator_wts)];
+		  resampled_particles.push_back(particles_i);
+	}
+	particles = resampled_particles;
 
-    // replace the old particles with the re-sampled particles
-    particles = resampled_particles;
+	return;
 }
 
 void ParticleFilter::write(std::string filename) {

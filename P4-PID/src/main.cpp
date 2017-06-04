@@ -1,8 +1,11 @@
-#include <uWS/uWS.h>
+#define _USE_MATH_DEFINES
+
+#include "uWS/uWS.h"
 #include <iostream>
 #include "json.hpp"
 #include "PID.h"
 #include <math.h>
+#include <stdlib.h>
 
 // for convenience
 using json = nlohmann::json;
@@ -34,6 +37,7 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
+  pid.Init(1, 0, 0);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -57,7 +61,10 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
-          
+		  pid.UpdateError(cte);
+
+		  steer_value = pid.TotalError();
+
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
 

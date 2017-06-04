@@ -1,9 +1,9 @@
-#define _USE_MATH_DEFINES
-
-#include "uWS/uWS.h"
 #include <iostream>
 #include "json.hpp"
 #include "PID.h"
+#include "uWS/uWS.h"
+
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
 

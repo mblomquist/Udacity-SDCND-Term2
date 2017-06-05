@@ -26,6 +26,15 @@ Self-Driving Car Engineer Nanodegree Program
     Some function signatures have changed in v0.14.x. See [this PR](https://github.com/udacity/CarND-MPC-Project/pull/3) for more details.
 * Simulator. You can download these from the [project intro page](https://github.com/udacity/self-driving-car-sim/releases) in the classroom.
 
+## Windows Install Instructions 
+
+1. Install, in your root `c:/` directory, vcpkg https://github.com/Microsoft/vcpkg   (15 - 30 minutes)
+2. Be sure while installing vcpkg to carefully follow all instructions! This is NOT an easy install process.
+3. Install python 2.7 (dependency for libuv) 
+4. cd to directory with vcpkg .exe and `./vcpkg install uWebsockets` (20 min, mostly automatic)
+5. Open CMakeSetting.json, check if `C:/vcpkg/scripts/buildsystems/vcpkg.cmake` is the correct directory to your vcpkg and `DCMAKE_TOOLCHAIN_FILE` matches the output from vcpkg integrate.
+6. Open in VS17 community edition, build pid.exe in x86 debug.
+
 ## Basic Build Instructions
 
 1. Clone this repo.

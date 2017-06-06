@@ -5,6 +5,8 @@
 #include <string>
 // #include <experimental/string_view>
 
+#include <iostream>
+
 namespace uWS {
 
 struct Header {
@@ -106,20 +108,38 @@ struct HttpRequest {
 struct HttpResponse;
 
 template <const bool isServer>
-struct WIN32_EXPORT HttpSocket : uS::Socket {
-    void *httpUser; // remove this later, setTimeout occupies user for now
-    HttpResponse *outstandingResponsesHead = nullptr;
-    HttpResponse *outstandingResponsesTail = nullptr;
-    HttpResponse *preAllocatedResponse = nullptr;
+struct WIN32_EXPORT HttpSocket : private uS::Socket {
+    struct Data : uS::SocketData {
+        std::string httpBuffer;
+        size_t contentLength = 0;
+        void *httpUser;
+        bool missedDeadline = false;
 
-    std::string httpBuffer;
-    size_t contentLength = 0;
-    bool missedDeadline = false;
+        HttpResponse *outstandingResponsesHead = nullptr;
+        HttpResponse *outstandingResponsesTail = nullptr;
+        HttpResponse *preAllocatedResponse = nullptr;
 
-    HttpSocket(uS::Socket *socket) : uS::Socket(std::move(*socket)) {}
+        Data(uS::SocketData *socketData) : uS::SocketData(*socketData) {}
+    };
+
+    using uS::Socket::getUserData;
+    using uS::Socket::setUserData;
+    using uS::Socket::getAddress;
+    using uS::Socket::Address;
+
+    uv_poll_t *getPollHandle() const {return p;}
+
+    using uS::Socket::shutdown;
+    using uS::Socket::close;
 
     void terminate() {
-        onEnd(this);
+        onEnd(*this);
+    }
+
+    HttpSocket(uS::Socket s) : uS::Socket(s) {}
+
+    typename HttpSocket::Data *getData() {
+        return (HttpSocket::Data *) getSocketData();
     }
 
     void upgrade(const char *secKey, const char *extensions,
@@ -127,39 +147,40 @@ struct WIN32_EXPORT HttpSocket : uS::Socket {
                  size_t subprotocolLength, bool *perMessageDeflate);
 
 private:
-    friend struct uS::Socket;
+    friend class uS::Socket;
     friend struct HttpResponse;
     friend struct Hub;
-    static uS::Socket *onData(uS::Socket *s, char *data, size_t length);
-    static void onEnd(uS::Socket *s);
+    static void onData(uS::Socket s, char *data, int length);
+    static void onEnd(uS::Socket s);
 };
 
 struct HttpResponse {
-    HttpSocket<true> *httpSocket;
+
+    HttpSocket<true> httpSocket;
     HttpResponse *next = nullptr;
     void *userData = nullptr;
     void *extraUserData = nullptr;
-    HttpSocket<true>::Queue::Message *messageQueue = nullptr;
+    uS::SocketData::Queue::Message *messageQueue = nullptr;
     bool hasEnded = false;
     bool hasHead = false;
 
-    HttpResponse(HttpSocket<true> *httpSocket) : httpSocket(httpSocket) {
+    HttpResponse(HttpSocket<true> httpSocket) : httpSocket(httpSocket) {
 
     }
 
     template <bool isServer>
-    static HttpResponse *allocateResponse(HttpSocket<isServer> *httpSocket) {
-        if (httpSocket->preAllocatedResponse) {
-            HttpResponse *ret = httpSocket->preAllocatedResponse;
-            httpSocket->preAllocatedResponse = nullptr;
+    static HttpResponse *allocateResponse(HttpSocket<isServer> httpSocket, typename HttpSocket<isServer>::Data *httpData) {
+        if (httpData->preAllocatedResponse) {
+            HttpResponse *ret = httpData->preAllocatedResponse;
+            httpData->preAllocatedResponse = nullptr;
             return ret;
         } else {
-            return new HttpResponse((HttpSocket<true> *) httpSocket);
+            return new HttpResponse(httpSocket);
         }
     }
 
     //template <bool isServer>
-    void freeResponse(HttpSocket<true> *httpData) {
+    void freeResponse(typename HttpSocket<true>::Data *httpData) {
         if (httpData->preAllocatedResponse) {
             delete this;
         } else {
@@ -182,7 +203,7 @@ struct HttpResponse {
             }
         };
 
-        httpSocket->sendTransformed<NoopTransformer>(message, length, callback, callbackData, 0);
+        httpSocket.sendTransformed<NoopTransformer>(message, length, callback, callbackData, 0);
         hasHead = true;
     }
 
@@ -210,8 +231,8 @@ struct HttpResponse {
             }
         };
 
-        if (httpSocket->outstandingResponsesHead != this) {
-            HttpSocket<true>::Queue::Message *messagePtr = httpSocket->allocMessage(HttpTransformer::estimate(message, length));
+        if (httpSocket.getData()->outstandingResponsesHead != this) {
+            uS::SocketData::Queue::Message *messagePtr = httpSocket.allocMessage(HttpTransformer::estimate(message, length));
             messagePtr->length = HttpTransformer::transform(message, (char *) messagePtr->data, length, transformData);
             messagePtr->callback = callback;
             messagePtr->callbackData = callbackData;
@@ -219,19 +240,19 @@ struct HttpResponse {
             messageQueue = messagePtr;
             hasEnded = true;
         } else {
-            httpSocket->sendTransformed<HttpTransformer>(message, length, callback, callbackData, transformData);
+            httpSocket.sendTransformed<HttpTransformer>(message, length, callback, callbackData, transformData);
             // move head as far as possible
             HttpResponse *head = next;
             while (head) {
                 // empty message queue
-                HttpSocket<true>::Queue::Message *messagePtr = head->messageQueue;
+                uS::SocketData::Queue::Message *messagePtr = head->messageQueue;
                 while (messagePtr) {
-                    HttpSocket<true>::Queue::Message *nextMessage = messagePtr->nextMessage;
+                    uS::SocketData::Queue::Message *nextMessage = messagePtr->nextMessage;
 
                     bool wasTransferred;
-                    if (httpSocket->write(messagePtr, wasTransferred)) {
+                    if (httpSocket.write(messagePtr, wasTransferred)) {
                         if (!wasTransferred) {
-                            httpSocket->freeMessage(messagePtr);
+                            httpSocket.freeMessage(messagePtr);
                             if (callback) {
                                 callback(this, callbackData, false, nullptr);
                             }
@@ -240,7 +261,7 @@ struct HttpResponse {
                             messagePtr->callbackData = callbackData;
                         }
                     } else {
-                        httpSocket->freeMessage(messagePtr);
+                        httpSocket.freeMessage(messagePtr);
                         if (callback) {
                             callback(this, callbackData, true, nullptr);
                         }
@@ -253,17 +274,17 @@ struct HttpResponse {
                     break;
                 } else {
                     HttpResponse *next = head->next;
-                    head->freeResponse(httpSocket);
+                    head->freeResponse(httpSocket.getData());
                     head = next;
                 }
             }
             updateHead:
-            httpSocket->outstandingResponsesHead = head;
+            httpSocket.getData()->outstandingResponsesHead = head;
             if (!head) {
-                httpSocket->outstandingResponsesTail = nullptr;
+                httpSocket.getData()->outstandingResponsesTail = nullptr;
             }
 
-            freeResponse(httpSocket);
+            freeResponse(httpSocket.getData());
         }
     }
 
@@ -275,7 +296,7 @@ struct HttpResponse {
         return userData;
     }
 
-    HttpSocket<true> *getHttpSocket() {
+    HttpSocket<true> getHttpSocket() {
         return httpSocket;
     }
 };

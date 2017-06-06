@@ -7,6 +7,8 @@
 #define MAX_HEADER_BUFFER_SIZE 4096
 #define FORCE_SLOW_PATH false
 
+#include <iostream>
+
 namespace uWS {
 
 // UNSAFETY NOTE: assumes *end == '\r' (might unref end pointer)
@@ -53,34 +55,35 @@ static void base64(unsigned char *src, char *dst) {
 }
 
 template <bool isServer>
-uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t length) {
-    HttpSocket<isServer> *httpSocket = (HttpSocket<isServer> *) s;
+void HttpSocket<isServer>::onData(uS::Socket s, char *data, int length) {
+    HttpSocket httpSocket(s);
+    HttpSocket::Data *httpData = httpSocket.getData();
 
-    httpSocket->cork(true);
+    httpSocket.cork(true);
 
-    if (httpSocket->contentLength) {
-        httpSocket->missedDeadline = false;
-        if (httpSocket->contentLength >= length) {
-            Group<isServer>::from(httpSocket)->httpDataHandler(httpSocket->outstandingResponsesTail, data, length, httpSocket->contentLength -= length);
-            return httpSocket;
+    if (httpData->contentLength) {
+        httpData->missedDeadline = false;
+        if (httpData->contentLength >= length) {
+            getGroup<isServer>(s)->httpDataHandler(httpData->outstandingResponsesTail, data, length, httpData->contentLength -= length);
+            return;
         } else {
-            Group<isServer>::from(httpSocket)->httpDataHandler(httpSocket->outstandingResponsesTail, data, httpSocket->contentLength, 0);
-            data += httpSocket->contentLength;
-            length -= httpSocket->contentLength;
-            httpSocket->contentLength = 0;
+            getGroup<isServer>(s)->httpDataHandler(httpData->outstandingResponsesTail, data, httpData->contentLength, 0);
+            data += httpData->contentLength;
+            length -= httpData->contentLength;
+            httpData->contentLength = 0;
         }
     }
 
-    if (FORCE_SLOW_PATH || httpSocket->httpBuffer.length()) {
-        if (httpSocket->httpBuffer.length() + length > MAX_HEADER_BUFFER_SIZE) {
-            httpSocket->onEnd(httpSocket);
-            return httpSocket;
+    if (FORCE_SLOW_PATH || httpData->httpBuffer.length()) {
+        if (httpData->httpBuffer.length() + length > MAX_HEADER_BUFFER_SIZE) {
+            httpSocket.onEnd(s);
+            return;
         }
 
-        httpSocket->httpBuffer.reserve(httpSocket->httpBuffer.length() + length + WebSocketProtocol<uWS::CLIENT, WebSocket<uWS::CLIENT>>::CONSUME_POST_PADDING);
-        httpSocket->httpBuffer.append(data, length);
-        data = (char *) httpSocket->httpBuffer.data();
-        length = httpSocket->httpBuffer.length();
+        httpData->httpBuffer.reserve(httpData->httpBuffer.length() + length + WebSocketProtocol<uWS::CLIENT>::CONSUME_POST_PADDING);
+        httpData->httpBuffer.append(data, length);
+        data = (char *) httpData->httpBuffer.data();
+        length = httpData->httpBuffer.length();
     }
 
     char *end = data + length;
@@ -94,108 +97,95 @@ uS::Socket *HttpSocket<isServer>::onData(uS::Socket *s, char *data, size_t lengt
 
             if (isServer) {
                 headers->valueLength = std::max<int>(0, headers->valueLength - 9);
-                httpSocket->missedDeadline = false;
+                httpData->missedDeadline = false;
                 if (req.getHeader("upgrade", 7)) {
-                    if (Group<SERVER>::from(httpSocket)->httpUpgradeHandler) {
-                        Group<SERVER>::from(httpSocket)->httpUpgradeHandler((HttpSocket<SERVER> *) httpSocket, req);
+                    if (getGroup<SERVER>(s)->httpUpgradeHandler) {
+                        getGroup<SERVER>(s)->httpUpgradeHandler(HttpSocket<isServer>(s), req);
                     } else {
                         Header secKey = req.getHeader("sec-websocket-key", 17);
                         Header extensions = req.getHeader("sec-websocket-extensions", 24);
                         Header subprotocol = req.getHeader("sec-websocket-protocol", 22);
                         if (secKey.valueLength == 24) {
                             bool perMessageDeflate;
-                            httpSocket->upgrade(secKey.value, extensions.value, extensions.valueLength,
+                            httpSocket.upgrade(secKey.value, extensions.value, extensions.valueLength,
                                                subprotocol.value, subprotocol.valueLength, &perMessageDeflate);
-                            Group<isServer>::from(httpSocket)->removeHttpSocket(httpSocket);
-
-                            // Warning: changes socket, needs to inform the stack of Poll address change!
-                            WebSocket<isServer> *webSocket = new WebSocket<isServer>(perMessageDeflate, httpSocket);
-                            webSocket->template setState<WebSocket<isServer>>();
-                            webSocket->change(webSocket->nodeData->loop, webSocket, webSocket->setPoll(UV_READABLE));
-                            Group<isServer>::from(webSocket)->addWebSocket(webSocket);
-
-                            webSocket->cork(true);
-                            Group<isServer>::from(webSocket)->connectionHandler(webSocket, req);
-                            // todo: should not uncork if closed!
-                            webSocket->cork(false);
-                            delete httpSocket;
-
-                            return webSocket;
+                            getGroup<SERVER>(s)->removeHttpSocket(s);
+                            s.enterState<WebSocket<SERVER>>(new WebSocket<SERVER>::Data(perMessageDeflate, httpData));
+                            getGroup<SERVER>(s)->addWebSocket(s);
+                            s.cork(true);
+                            getGroup<SERVER>(s)->connectionHandler(WebSocket<SERVER>(s), req);
+                            s.cork(false);
+                            delete httpData;
                         } else {
-                            httpSocket->onEnd(httpSocket);
+                            httpSocket.onEnd(s);
                         }
                     }
-                    return httpSocket;
+                    return;
                 } else {
-                    if (Group<SERVER>::from(httpSocket)->httpRequestHandler) {
+                    if (getGroup<SERVER>(s)->httpRequestHandler) {
 
-                        HttpResponse *res = HttpResponse::allocateResponse(httpSocket);
-                        if (httpSocket->outstandingResponsesTail) {
-                            httpSocket->outstandingResponsesTail->next = res;
+                        HttpResponse *res = HttpResponse::allocateResponse(httpSocket, httpData);
+                        if (httpData->outstandingResponsesTail) {
+                            httpData->outstandingResponsesTail->next = res;
                         } else {
-                            httpSocket->outstandingResponsesHead = res;
+                            httpData->outstandingResponsesHead = res;
                         }
-                        httpSocket->outstandingResponsesTail = res;
+                        httpData->outstandingResponsesTail = res;
 
                         Header contentLength;
                         if (req.getMethod() != HttpMethod::METHOD_GET && (contentLength = req.getHeader("content-length", 14))) {
-                            httpSocket->contentLength = atoi(contentLength.value);
-                            size_t bytesToRead = std::min<int>(httpSocket->contentLength, end - cursor);
-                            Group<SERVER>::from(httpSocket)->httpRequestHandler(res, req, cursor, bytesToRead, httpSocket->contentLength -= bytesToRead);
+                            httpData->contentLength = atoi(contentLength.value);
+                            size_t bytesToRead = std::min<int>(httpData->contentLength, end - cursor);
+                            getGroup<SERVER>(s)->httpRequestHandler(res, req, cursor, bytesToRead, httpData->contentLength -= bytesToRead);
                             cursor += bytesToRead;
                         } else {
-                            Group<SERVER>::from(httpSocket)->httpRequestHandler(res, req, nullptr, 0, 0);
+                            getGroup<SERVER>(s)->httpRequestHandler(res, req, nullptr, 0, 0);
                         }
 
-                        if (httpSocket->isClosed() || httpSocket->isShuttingDown()) {
-                            return httpSocket;
+                        if (s.isClosed() || s.isShuttingDown()) {
+                            return;
                         }
                     } else {
-                        httpSocket->onEnd(httpSocket);
-                        return httpSocket;
+                        httpSocket.onEnd(s);
+                        return;
                     }
                 }
             } else {
                 if (req.getHeader("upgrade", 7)) {
+                    s.enterState<WebSocket<CLIENT>>(new WebSocket<CLIENT>::Data(false, httpData));
 
-                    // Warning: changes socket, needs to inform the stack of Poll address change!
-                    WebSocket<isServer> *webSocket = new WebSocket<isServer>(false, httpSocket);
-                    httpSocket->cancelTimeout();
-                    webSocket->setUserData(httpSocket->httpUser);
-                    webSocket->template setState<WebSocket<isServer>>();
-                    webSocket->change(webSocket->nodeData->loop, webSocket, webSocket->setPoll(UV_READABLE));
-                    Group<isServer>::from(webSocket)->addWebSocket(webSocket);
+                    httpSocket.cancelTimeout();
+                    httpSocket.setUserData(httpData->httpUser);
+                    getGroup<CLIENT>(s)->addWebSocket(s);
+                    s.cork(true);
+                    getGroup<CLIENT>(s)->connectionHandler(WebSocket<CLIENT>(s), req);
+                    s.cork(false);
 
-                    webSocket->cork(true);
-                    Group<isServer>::from(webSocket)->connectionHandler(webSocket, req);
-                    if (!(webSocket->isClosed() || webSocket->isShuttingDown())) {
-                        WebSocketProtocol<isServer, WebSocket<isServer>>::consume(cursor, end - cursor, webSocket);
+                    if (!(s.isClosed() || s.isShuttingDown())) {
+                        WebSocketProtocol<CLIENT> *kws = (WebSocketProtocol<CLIENT> *) ((WebSocket<CLIENT>::Data *) s.getSocketData());
+                        kws->consume(cursor, end - cursor, s);
                     }
-                    webSocket->cork(false);
-                    delete httpSocket;
 
-                    return webSocket;
+                    delete httpData;
                 } else {
-                    httpSocket->onEnd(httpSocket);
+                    httpSocket.onEnd(s);
                 }
-                return httpSocket;
+                return;
             }
         } else {
-            if (!httpSocket->httpBuffer.length()) {
+            if (!httpData->httpBuffer.length()) {
                 if (length > MAX_HEADER_BUFFER_SIZE) {
-                    httpSocket->onEnd(httpSocket);
+                    httpSocket.onEnd(s);
                 } else {
-                    httpSocket->httpBuffer.append(lastCursor, end - lastCursor);
+                    httpData->httpBuffer.append(lastCursor, end - lastCursor);
                 }
             }
-            return httpSocket;
+            return;
         }
     } while(cursor != end);
 
-    httpSocket->cork(false);
-    httpSocket->httpBuffer.clear();
-
-    return httpSocket;
+    httpSocket.cork(false);
+    httpData->httpBuffer.clear();
 }
 
 // todo: make this into a transformer and make use of sendTransformed
@@ -203,13 +193,13 @@ template <bool isServer>
 void HttpSocket<isServer>::upgrade(const char *secKey, const char *extensions, size_t extensionsLength,
                                    const char *subprotocol, size_t subprotocolLength, bool *perMessageDeflate) {
 
-    Queue::Message *messagePtr;
+    uS::SocketData::Queue::Message *messagePtr;
 
     if (isServer) {
         *perMessageDeflate = false;
         std::string extensionsResponse;
         if (extensionsLength) {
-            Group<isServer> *group = Group<isServer>::from(this);
+            Group<isServer> *group = getGroup<isServer>(*this);
             ExtensionsNegotiator<uWS::SERVER> extensionsNegotiator(group->extensionOptions);
             extensionsNegotiator.readOffer(std::string(extensions, extensionsLength));
             extensionsResponse = extensionsNegotiator.generateOffer();
@@ -228,13 +218,13 @@ void HttpSocket<isServer>::upgrade(const char *secKey, const char *extensions, s
         base64(shaDigest, upgradeBuffer + 97);
         memcpy(upgradeBuffer + 125, "\r\n", 2);
         size_t upgradeResponseLength = 127;
-        if (extensionsResponse.length() && extensionsResponse.length() < 200) {
+        if (extensionsResponse.length()) {
             memcpy(upgradeBuffer + upgradeResponseLength, "Sec-WebSocket-Extensions: ", 26);
             memcpy(upgradeBuffer + upgradeResponseLength + 26, extensionsResponse.data(), extensionsResponse.length());
             memcpy(upgradeBuffer + upgradeResponseLength + 26 + extensionsResponse.length(), "\r\n", 2);
             upgradeResponseLength += 26 + extensionsResponse.length() + 2;
         }
-        if (subprotocolLength && subprotocolLength < 200) {
+        if (subprotocolLength) {
             memcpy(upgradeBuffer + upgradeResponseLength, "Sec-WebSocket-Protocol: ", 24);
             memcpy(upgradeBuffer + upgradeResponseLength + 24, subprotocol, subprotocolLength);
             memcpy(upgradeBuffer + upgradeResponseLength + 24 + subprotocolLength, "\r\n", 2);
@@ -246,8 +236,8 @@ void HttpSocket<isServer>::upgrade(const char *secKey, const char *extensions, s
 
         messagePtr = allocMessage(upgradeResponseLength, upgradeBuffer);
     } else {
-        messagePtr = allocMessage(httpBuffer.length(), httpBuffer.data());
-        httpBuffer.clear();
+        messagePtr = allocMessage(getData()->httpBuffer.length(), getData()->httpBuffer.data());
+        getData()->httpBuffer.clear();
     }
 
     bool wasTransferred;
@@ -263,45 +253,45 @@ void HttpSocket<isServer>::upgrade(const char *secKey, const char *extensions, s
 }
 
 template <bool isServer>
-void HttpSocket<isServer>::onEnd(uS::Socket *s) {
-    HttpSocket<isServer> *httpSocket = (HttpSocket<isServer> *) s;
-
-    if (!httpSocket->isShuttingDown()) {
+void HttpSocket<isServer>::onEnd(uS::Socket s) {
+    if (!s.isShuttingDown()) {
         if (isServer) {
-            Group<isServer>::from(httpSocket)->removeHttpSocket(httpSocket);
-            Group<isServer>::from(httpSocket)->httpDisconnectionHandler(httpSocket);
+            getGroup<isServer>(s)->removeHttpSocket(HttpSocket<isServer>(s));
+            getGroup<isServer>(s)->httpDisconnectionHandler(HttpSocket<isServer>(s));
         }
     } else {
-        httpSocket->cancelTimeout();
+        s.cancelTimeout();
     }
 
-    httpSocket->template closeSocket<HttpSocket<isServer>>();
+    Data *httpSocketData = (Data *) s.getSocketData();
 
-    while (!httpSocket->messageQueue.empty()) {
-        Queue::Message *message = httpSocket->messageQueue.front();
+    s.close();
+
+    while (!httpSocketData->messageQueue.empty()) {
+        uS::SocketData::Queue::Message *message = httpSocketData->messageQueue.front();
         if (message->callback) {
             message->callback(nullptr, message->callbackData, true, nullptr);
         }
-        httpSocket->messageQueue.pop();
+        httpSocketData->messageQueue.pop();
     }
 
-    while (httpSocket->outstandingResponsesHead) {
-        Group<isServer>::from(httpSocket)->httpCancelledRequestHandler(httpSocket->outstandingResponsesHead);
-        HttpResponse *next = httpSocket->outstandingResponsesHead->next;
-        delete httpSocket->outstandingResponsesHead;
-        httpSocket->outstandingResponsesHead = next;
+    while (httpSocketData->outstandingResponsesHead) {
+        getGroup<isServer>(s)->httpCancelledRequestHandler(httpSocketData->outstandingResponsesHead);
+        HttpResponse *next = httpSocketData->outstandingResponsesHead->next;
+        delete httpSocketData->outstandingResponsesHead;
+        httpSocketData->outstandingResponsesHead = next;
     }
 
-    if (httpSocket->preAllocatedResponse) {
-        delete httpSocket->preAllocatedResponse;
+    if (httpSocketData->preAllocatedResponse) {
+        delete httpSocketData->preAllocatedResponse;
     }
-
-    httpSocket->nodeData->clearPendingPollChanges(httpSocket);
 
     if (!isServer) {
-        httpSocket->cancelTimeout();
-        Group<CLIENT>::from(httpSocket)->errorHandler(httpSocket->httpUser);
+        s.cancelTimeout();
+        getGroup<CLIENT>(s)->errorHandler(httpSocketData->httpUser);
     }
+
+    delete httpSocketData;
 }
 
 template struct HttpSocket<SERVER>;

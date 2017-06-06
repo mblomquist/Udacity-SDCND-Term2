@@ -1,0 +1,769 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : Access to the path 'd:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\build\debug\pid.exe' is denied.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : Access to the path 'd:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\build\debug\libeay32.dll' is denied.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : Access to the path 'd:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\build\debug\libuv.dll' is denied.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : Access to the path 'd:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\build\debug\ssleay32.dll' is denied.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : Access to the path 'd:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\build\debug\zlibd1.dll' is denied.
+  Building Custom Rule D:/Matt/Documents/nanodegree/Udacity-SDCND-Term2/P4-PID/CMakeLists.txt
+  CMake does not need to re-run because D:/Matt/Documents/nanodegree/Udacity-SDCND-Term2/P4-PID/build/CMakeFiles/generate.stamp is up-to-date.
+  PID.cpp
+  main.cpp
+D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\main.cpp(1): warning C4005: '_USE_MATH_DEFINES': macro redefinition
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\main.cpp(1): note: command-line arguments:  see previous definition of '_USE_MATH_DEFINES'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Node.h(19): warning C4251: 'uS::Node::asyncMutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'uS::Node'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\mutex(79): note: see declaration of 'std::mutex'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(35): warning C4251: 'uWS::Hub::dynamicInflationBuffer': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Hub'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  Extensions.cpp
+  Group.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Node.h(19): warning C4251: 'uS::Node::asyncMutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'uS::Node'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\mutex(79): note: see declaration of 'std::mutex'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(35): warning C4251: 'uWS::Hub::dynamicInflationBuffer': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Hub'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  WebSocketImpl.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Node.h(19): warning C4251: 'uS::Node::asyncMutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'uS::Node'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\mutex(79): note: see declaration of 'std::mutex'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(35): warning C4251: 'uWS::Hub::dynamicInflationBuffer': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Hub'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(272): warning C4267: '=': conversion from 'size_t' to 'char', possible loss of data
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(267): note: while compiling class template member function 'size_t uWS::WebSocketProtocol<false>::formatMessage(char *,const char *,::size_t,uWS::OpCode,::size_t,bool)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocketImpl.cpp(113): note: see reference to class template instantiation 'uWS::WebSocketProtocol<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(276): warning C4267: 'argument': conversion from 'size_t' to 'u_short', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(101): warning C4244: 'argument': conversion from 'uint64_t' to 'int', possible loss of data
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(317): note: while compiling class template member function 'void uWS::WebSocketProtocol<false>::consume(char *,unsigned int,void *)'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(108): warning C4244: 'argument': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(109): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(113): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(123): warning C4244: '-=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(129): warning C4244: '=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+  Networking.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  Hub.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Node.h(19): warning C4251: 'uS::Node::asyncMutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'uS::Node'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\mutex(79): note: see declaration of 'std::mutex'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(14): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Hub.h(35): warning C4251: 'uWS::Hub::dynamicInflationBuffer': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Hub'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+  Node.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Node.h(19): warning C4251: 'uS::Node::asyncMutex': class 'std::mutex' needs to have dll-interface to be used by clients of class 'uS::Node'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\mutex(79): note: see declaration of 'std::mutex'
+  WebSocket.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocket.h(45): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocket.h(44): note: while compiling class template member function 'void uWS::WebSocket<false>::transfer(uWS::Group<false> *)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocket.cpp(176): note: see reference to class template instantiation 'uWS::WebSocket<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocket.h(45): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocket.h(44): note: while compiling class template member function 'void uWS::WebSocket<true>::transfer(uWS::Group<true> *)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocket.cpp(175): note: see reference to class template instantiation 'uWS::WebSocket<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(272): warning C4267: '=': conversion from 'size_t' to 'char', possible loss of data
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(267): note: while compiling class template member function 'size_t uWS::WebSocketProtocol<false>::formatMessage(char *,const char *,::size_t,uWS::OpCode,::size_t,bool)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocket.cpp(20): note: see reference to function template instantiation 'size_t uWS::WebSocketProtocol<false>::formatMessage(char *,const char *,::size_t,uWS::OpCode,::size_t,bool)' being compiled
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocket.h(14): note: see reference to class template instantiation 'uWS::WebSocketProtocol<false>' being compiled
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocket.cpp(176): note: see reference to class template instantiation 'uWS::WebSocket<false>::Data' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(276): warning C4267: 'argument': conversion from 'size_t' to 'u_short', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(101): warning C4244: 'argument': conversion from 'uint64_t' to 'int', possible loss of data
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(317): note: while compiling class template member function 'void uWS::WebSocketProtocol<false>::consume(char *,unsigned int,void *)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\WebSocket.cpp(118): note: see reference to function template instantiation 'void uWS::WebSocketProtocol<false>::consume(char *,unsigned int,void *)' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(108): warning C4244: 'argument': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(109): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(113): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(123): warning C4244: '-=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(129): warning C4244: '=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+  HTTPSocket.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(228): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(1772): note: see declaration of 'sprintf'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<true>::connectionHandler': class 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<true>,uWS::HttpRequest)>'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(203): note: see reference to class template instantiation 'uWS::Group<true>' being compiled
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(194): note: while compiling class template member function 'void uWS::HttpSocket<true>::upgrade(const char *,const char *,::size_t,const char *,::size_t,bool *)'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\HTTPSocket.h(159): note: see reference to class template instantiation 'uWS::HttpSocket<true>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<true>::messageHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<true>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<true>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<true>::pingHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<true>::pongHandler': class 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<true>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<true>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<true>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<true>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<true>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<true>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<true>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<true>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<true>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<true>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<true>::errorHandler': class 'std::function<void (int)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (int)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<true>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<true>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<true>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(66): warning C4018: '>=': signed/unsigned mismatch
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(58): note: while compiling class template member function 'void uWS::HttpSocket<true>::onData(uS::Socket,char *,int)'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): warning C4251: 'uWS::Group<false>::connectionHandler': class 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(17): note: see declaration of 'std::function<void (uWS::WebSocket<false>,uWS::HttpRequest)>'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(159): note: see reference to class template instantiation 'uWS::Group<false>' being compiled
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): warning C4251: 'uWS::Group<false>::messageHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(18): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t,uWS::OpCode)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): warning C4251: 'uWS::Group<false>::disconnectionHandler': class 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(19): note: see declaration of 'std::function<void (uWS::WebSocket<false>,int,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): warning C4251: 'uWS::Group<false>::pingHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(21): warning C4251: 'uWS::Group<false>::pongHandler': class 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(20): note: see declaration of 'std::function<void (uWS::WebSocket<false>,char *,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): warning C4251: 'uWS::Group<false>::httpConnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): warning C4251: 'uWS::Group<false>::httpRequestHandler': class 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(24): note: see declaration of 'std::function<void (uWS::HttpResponse *,uWS::HttpRequest,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): warning C4251: 'uWS::Group<false>::httpDataHandler': class 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(25): note: see declaration of 'std::function<void (uWS::HttpResponse *,char *,::size_t,::size_t)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): warning C4251: 'uWS::Group<false>::httpCancelledRequestHandler': class 'std::function<void (uWS::HttpResponse *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(26): note: see declaration of 'std::function<void (uWS::HttpResponse *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(28): warning C4251: 'uWS::Group<false>::httpDisconnectionHandler': class 'std::function<void (uWS::HttpSocket<false>)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(23): note: see declaration of 'std::function<void (uWS::HttpSocket<false>)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): warning C4251: 'uWS::Group<false>::httpUpgradeHandler': class 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(29): note: see declaration of 'std::function<void (uWS::HttpSocket<false>,uWS::HttpRequest)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): warning C4251: 'uWS::Group<false>::errorHandler': class 'std::function<void (void *)>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(32): note: see declaration of 'std::function<void (void *)>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(37): warning C4251: 'uWS::Group<false>::userPingMessage': class 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include\xstring(3997): note: see declaration of 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): warning C4251: 'uWS::Group<false>::iterators': class 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>' needs to have dll-interface to be used by clients of struct 'uWS::Group<false>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Group.h(55): note: see declaration of 'std::stack<uv_poll_t *,std::deque<_Ty,std::allocator<_Ty>>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(101): warning C4244: 'argument': conversion from 'uint64_t' to 'int', possible loss of data
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(347): note: see reference to function template instantiation 'bool uWS::WebSocketProtocol<false>::consumeMessage<10,uint64_t>(T,char *&,unsigned int &,uWS::WebSocketProtocol<false>::frameFormat,void *)' being compiled
+          with
+          [
+              T=uint64_t
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(317): note: while compiling class template member function 'void uWS::WebSocketProtocol<false>::consume(char *,unsigned int,void *)'
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(166): note: see reference to function template instantiation 'void uWS::WebSocketProtocol<false>::consume(char *,unsigned int,void *)' being compiled
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(83): note: see reference to class template instantiation 'uWS::WebSocketProtocol<false>' being compiled
+  D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\src\uWS\HTTPSocket.cpp(58): note: while compiling class template member function 'void uWS::HttpSocket<true>::onData(uS::Socket,char *,int)'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(108): warning C4244: 'argument': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(109): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(113): warning C4244: 'argument': conversion from 'uint64_t' to '::size_t', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(123): warning C4244: '-=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\WebSocketProtocol.h(129): warning C4244: '=': conversion from 'uint64_t' to 'unsigned int', possible loss of data
+  Socket.cpp
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): warning C4251: 'uS::TLS::Context::password': class 'std::shared_ptr<std::string>' needs to have dll-interface to be used by clients of class 'uS::TLS::Context'
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(70): note: see declaration of 'std::shared_ptr<std::string>'
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): warning C4251: 'uS::NodeData::transferQueue': class 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(134): note: see declaration of 'std::vector<uS::NodeData::TransferData,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uS::NodeData::TransferData
+          ]
+d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): warning C4251: 'uS::NodeData::changePollQueue': class 'std::vector<uv_poll_t *,std::allocator<_Ty>>' needs to have dll-interface to be used by clients of struct 'uS::NodeData'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  d:\matt\documents\nanodegree\udacity-sdcnd-term2\p4-pid\src\uws\Networking.h(135): note: see declaration of 'std::vector<uv_poll_t *,std::allocator<_Ty>>'
+          with
+          [
+              _Ty=uv_poll_t *
+          ]
+  uUV.cpp
+  Generating Code...
+     Creating library D:/Matt/Documents/nanodegree/Udacity-SDCND-Term2/P4-PID/build/Debug/pid.lib and object D:/Matt/Documents/nanodegree/Udacity-SDCND-Term2/P4-PID/build/Debug/pid.exp
+  pid.vcxproj -> D:\Matt\Documents\nanodegree\Udacity-SDCND-Term2\P4-PID\build\Debug\pid.exe

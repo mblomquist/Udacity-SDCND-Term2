@@ -17,6 +17,6 @@ Found in file P3 - PF
 
 Found in file P4 - PID
 
-## Project 5 - Linear Quadratic Regulator
+## Project 5 - Model Predicitive Controller 
 
-Found in file P5 - LQR
+Found in file P5 - MPC

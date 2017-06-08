@@ -32,6 +32,18 @@ Actuator Constraints:
 
 Cost Functions:
 
+A simple solution is to capture the velocity error in the cost function. This will penalize the vehicle for not maintaining the reference velocity.
+
+ - cost += pow(v[t] - 35, 2) // (Assuming 35 mph is the speed limit)
+ - cost += pow(delta[t], 2)
+ 
+ ```
+ for (int t = 0; t < N-1; t++) {
+  cost += pow(delta[t+1] - delta[t], 2)
+  cost += pow(a[t+1] - a[t], 2)
+}
+```
+
 ### Trajectory Length and Time-step Duration (N and dt)
 
 ### Polynominal Fitting and MPC Preprocessing

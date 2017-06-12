@@ -1,6 +1,8 @@
 # Model Predictive Controller
 ## Overview
 
+This project consists of a model-predictive controller that is being used to control the throttle and steering of a car running in the Udacity Simulator. The model-predictive controller assumes a simplified kinematic model that can be manipulated through two actuators that control the acceleration (throttle) and the steering angle. A cost-function is applied to the kinematic model and the cross-track error is minimized to achieve a stable driving condition (i.e. the car stays on the track). 
+
 ## Implementation
 ### Model
 

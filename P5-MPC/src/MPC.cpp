@@ -7,8 +7,8 @@ using CppAD::AD;
 
 // TODO: Set the timestep length and duration
 // Set number of timesteps (N) and length of time per timestep (dt)
-size_t N = 8; // Value barrowed from Sayna Ebrahimi -- Initial Guess
-double dt = 0.1; // Value barrowed from Sayna Ebrahimi -- Inital Guess
+size_t N = 8;
+double dt = 0.1;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -25,7 +25,7 @@ const double Lf = 2.67;
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
 double ref_epsi = 0.0; //
-double ref_vel = 50.0; // Reference velocity
+double ref_vel = 35.0; // Reference velocity
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.
@@ -90,26 +90,26 @@ public:
             fg[1 + epsi_start] = vars[epsi_start];
 
             // The rest of the constraints
-            for (int t = 1; t < N; t++) {
+            for (int i = 0; i < N - 1; i++) {
                   // The state at time t+1 .
-                  AD<double> x1 = vars[x_start + t];
-                  AD<double> y1 = vars[y_start + t];
-                  AD<double> psi1 = vars[psi_start + t];
-                  AD<double> v1 = vars[v_start + t];
-                  AD<double> cte1 = vars[cte_start + t];
-                  AD<double> epsi1 = vars[epsi_start + t];
+                  AD<double> x1 = vars[x_start + i + 1];
+                  AD<double> y1 = vars[y_start + i + 1];
+                  AD<double> psi1 = vars[psi_start + i + 1];
+                  AD<double> v1 = vars[v_start + i + 1];
+                  AD<double> cte1 = vars[cte_start + i + 1];
+                  AD<double> epsi1 = vars[epsi_start + i + 1];
 
                   // The state at time t.
-                  AD<double> x0 = vars[x_start + t - 1];
-                  AD<double> y0 = vars[y_start + t - 1];
-                  AD<double> psi0 = vars[psi_start + t - 1];
-                  AD<double> v0 = vars[v_start + t - 1];
-                  AD<double> cte0 = vars[cte_start + t - 1];
-                  AD<double> epsi0 = vars[epsi_start + t - 1];
+                  AD<double> x0 = vars[x_start + i];
+                  AD<double> y0 = vars[y_start + i];
+                  AD<double> psi0 = vars[psi_start + i];
+                  AD<double> v0 = vars[v_start + i];
+                  AD<double> cte0 = vars[cte_start + i];
+                  AD<double> epsi0 = vars[epsi_start + i];
 
                   // Only consider the actuation at time t.
-                  AD<double> delta0 = vars[delta_start + t - 1];
-                  AD<double> a0 = vars[a_start + t - 1];
+                  AD<double> delta0 = vars[delta_start + i];
+                  AD<double> a0 = vars[a_start + i];
 
                   // Create 3rd Order Polynomial
                   AD<double> f0 = coeffs[0] + coeffs[1] * x0 + coeffs[2] * x0 * x0 + coeffs[3] * x0 * x0 * x0;
@@ -125,13 +125,13 @@ public:
                   // v_[t+1] = v[t] + a[t] * dt
                   // cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
                   // epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
-                  fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
-                  fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
-                  fg[2 + v_start + t] = v1 - (v0 + a0 * dt);
-                  fg[2 + psi_start + t] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
-                  fg[2 + cte_start + t] =
+                  fg[2 + x_start + i] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
+                  fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
+                  fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
+                  fg[2 + psi_start + i] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
+                  fg[2 + cte_start + i] =
                         cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
-                  fg[2 + epsi_start + t] =
+                  fg[2 + epsi_start + i] =
                         epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
             }
       }
@@ -235,7 +235,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
       // options for IPOPT solver
       std::string options;
       // Uncomment this if you'd like more print information
-      options += "Integer print_level  0\n";
+      options += "Integer print_level  12\n";
 
       // Add new solver
       options += "String linear_solver mumps\n";
@@ -253,13 +253,6 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
       // place to return solution
       CppAD::ipopt::solve_result<Dvector> solution;
-
-      // Test Input to CppAD > Solve
-      cout << "vars:" << vars.size() << endl;
-      cout << "vars_lowerbound:" << vars_lowerbound.size() << endl;
-      cout << "vars_upperbound: " << vars_upperbound.size() << endl;
-      cout << "constraints_lowerbound: " << constraints_lowerbound.size() << endl;
-      cout << "constraints_upperbound: " << constraints_upperbound.size() << endl;
 
       // solve the problem
       CppAD::ipopt::solve<Dvector, FG_eval>(

@@ -24,7 +24,7 @@ const double Lf = 2.67;
 
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
-double ref_epsi = 0.0; // 
+double ref_epsi = 0.0; //
 double ref_vel = 50.0; // Reference velocity
 
 // Create an index scheme for the optimization solver as the input
@@ -58,7 +58,7 @@ public:
             for (int t = 0; t < N; t++) {
                   fg[0] += 1500*CppAD::pow(vars[cte_start + t] - ref_cte, 2);
                   fg[0] += 2000*CppAD::pow(vars[epsi_start + t] - ref_epsi, 2);
-                  fg[0] += CppAD::pow(vars[v_start + t] - ref_v, 2);
+                  fg[0] += CppAD::pow(vars[v_start + t] - ref_vel, 2);
             }
 
             // Minimize the use of actuators.
@@ -125,13 +125,13 @@ public:
                   // v_[t+1] = v[t] + a[t] * dt
                   // cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
                   // epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
-                  fg[2 + x_start + i] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
-                  fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
-                  fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
-                  fg[2 + psi_start + i] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
-                  fg[2 + cte_start + i] =
+                  fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
+                  fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
+                  fg[2 + v_start + t] = v1 - (v0 + a0 * dt);
+                  fg[2 + psi_start + t] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
+                  fg[2 + cte_start + t] =
                         cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
-                  fg[2 + epsi_start + i] =
+                  fg[2 + epsi_start + t] =
                         epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
             }
       }
@@ -267,7 +267,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
       //
       // {...} is shorthand for creating a vector, so auto x1 = {1.0,2.0}
       // creates a 2 element double vector.
-      
+
       // Clear old MPC values
       mpc_x_vals.clear();
       mpc_y_vals.clear();

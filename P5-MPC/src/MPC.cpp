@@ -7,8 +7,8 @@ using CppAD::AD;
 
 // TODO: Set the timestep length and duration
 // Set number of timesteps (N) and length of time per timestep (dt)
-size_t N = 8;
-double dt = 0.1;
+size_t N = 9;
+double dt = 0.2;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -25,7 +25,16 @@ const double Lf = 2.67;
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
 double ref_epsi = 0.0; //
-double ref_vel = 35.0; // Reference velocity
+double ref_vel = 15.0; // Reference velocity
+
+// Define Cost coefficients
+const double c_cte = 2.0;
+const double c_epsi = 3.0;
+const double c_vel = 0.1;
+const double c_throttle = 150.0;
+const double c_steering = 0.2;
+const double c_t_seq = 20.0;
+const double c_s_seq = 50.0;
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.
@@ -56,21 +65,21 @@ public:
 
             // The part of the cost based on the reference state.
             for (int t = 0; t < N; t++) {
-                  fg[0] += 1500*CppAD::pow(vars[cte_start + t] - ref_cte, 2);
-                  fg[0] += 2000*CppAD::pow(vars[epsi_start + t] - ref_epsi, 2);
-                  fg[0] += CppAD::pow(vars[v_start + t] - ref_vel, 2);
+                  fg[0] += c_cte*CppAD::pow(vars[cte_start + t] - ref_cte, 2);
+                  fg[0] += c_epsi*CppAD::pow(vars[epsi_start + t] - ref_epsi, 2);
+                  fg[0] += c_vel*CppAD::pow(vars[v_start + t] - ref_vel, 2);
             }
 
             // Minimize the use of actuators.
             for (int t = 0; t < N - 1; t++) {
-                  fg[0] += 10000*CppAD::pow(vars[delta_start + t], 2);
-                  fg[0] += 10*CppAD::pow(vars[a_start + t], 2);
+                  fg[0] += c_throttle*CppAD::pow(vars[delta_start + t], 2);
+                  fg[0] += c_steering*CppAD::pow(vars[a_start + t], 2);
             }
 
             // Minimize the value gap between sequential actuations.
             for (int t = 0; t < N - 2; t++) {
-                  fg[0] += 10000*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
-                  fg[0] += 10000*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+                  fg[0] += c_t_seq*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+                  fg[0] += c_s_seq*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
             }
             //
             // Setup Constraints

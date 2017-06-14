@@ -1,6 +1,8 @@
 # Model Predictive Controller
 ## Overview
 
+![start](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/start.JPG?raw=true)
+
 This project consists of a model-predictive controller that is being used to control the throttle and steering of a car running in the Udacity Simulator. The model-predictive controller assumes a simplified kinematic model that can be manipulated through two actuators that control the acceleration (throttle) and the steering angle. A cost-function is applied to the kinematic model and the cross-track error is minimized to achieve a stable driving condition (i.e. the car stays on the track). 
 
 ## Model Implementation
@@ -156,3 +158,15 @@ Loop
 3.	Apply actuator control parameters.
 
 ## Results
+
+The MPC model ended up performing quite well after tuning the cost weights and time-step parameters. In straight-aways, the model performed in a similar way to the previous PID controller project. However, it is important to note that the MPC controller had to over come 100 milliseconds of latency (the PID controller did not). 
+
+![mid](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/mid.JPG?raw=true)
+
+In corners, the MPC ended up performing better than the PID controller and turned at a slow and methodical angle. This did run into a few close calls near the portion of the track that consists of sharp turns. The two examples below show a few close calls.
+
+![wild1](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/wild1.JPG?raw=true)
+
+![wild2](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/wild2.JPG?raw=true)
+
+In the end, the MPC controller made it around the track without actually leaving the drivable portion of the track, which is acceptable. However, further improvements can be made to fix these potential difficulties.

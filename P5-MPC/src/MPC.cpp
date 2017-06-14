@@ -7,8 +7,8 @@ using CppAD::AD;
 
 // TODO: Set the timestep length and duration
 // Set number of timesteps (N) and length of time per timestep (dt)
-size_t N = 9;
-double dt = 0.2;
+size_t N = 8;
+double dt = 0.22;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -25,16 +25,16 @@ const double Lf = 2.67;
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
 double ref_epsi = 0.0; //
-double ref_vel = 15.0; // Reference velocity
+double ref_vel = 36.0; // Reference velocity
 
 // Define Cost coefficients
-const double c_cte = 2.0;
-const double c_epsi = 3.0;
-const double c_vel = 0.1;
-const double c_throttle = 150.0;
-const double c_steering = 0.2;
-const double c_t_seq = 20.0;
-const double c_s_seq = 50.0;
+const double c_cte = 0.4;
+const double c_epsi = 0.32;
+const double c_vel = 0.261;
+const double c_throttle = 25.0;
+const double c_steering = 300.0;
+const double c_t_seq = 0.00001;
+const double c_s_seq = 0.01;
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.
@@ -72,14 +72,14 @@ public:
 
             // Minimize the use of actuators.
             for (int t = 0; t < N - 1; t++) {
-                  fg[0] += c_throttle*CppAD::pow(vars[delta_start + t], 2);
-                  fg[0] += c_steering*CppAD::pow(vars[a_start + t], 2);
+                  fg[0] += c_steering*CppAD::pow(vars[delta_start + t], 2);
+                  fg[0] += c_throttle*CppAD::pow(vars[a_start + t], 2);
             }
 
             // Minimize the value gap between sequential actuations.
             for (int t = 0; t < N - 2; t++) {
-                  fg[0] += c_t_seq*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
-                  fg[0] += c_s_seq*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
+                  fg[0] += c_s_seq*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+                  fg[0] += c_t_seq*CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
             }
             //
             // Setup Constraints
@@ -292,6 +292,5 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
       }
 
       // Return actuator values
-      return{solution.x[delta_start] + solution.x[delta_start+1],
-            solution.x[a_start] + solution.x[a_start + 1]};
+      return{solution.x[delta_start], solution.x[a_start]};
 }

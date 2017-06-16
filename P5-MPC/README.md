@@ -99,7 +99,7 @@ Actuator Constraints:
 - Steering Angle: [-25, 25] 
 - Acceleration (Throttle Parameter): [-1, 1]
 
-The steering angle of the car is limited by a maximum 30 degree travel and the throttle is controlled to a value of +/- 1. At 1, the throttle represents the maximum forward acceleration (-1 represents the maximum reverse throttle).
+The steering angle of the car is limited by a maximum 25 degree travel and the throttle is controlled to a value of +/- 1. At 1, the throttle represents the maximum forward acceleration (-1 represents the maximum reverse throttle).
 
 ### Cost Function and Optimization
 

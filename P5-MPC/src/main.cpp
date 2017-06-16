@@ -92,6 +92,17 @@ int main() {
                               double py = j[1]["y"];
                               double psi = j[1]["psi"];
                               double v = j[1]["speed"];
+                              double delta = j[1]["steering_angle"];
+                              double alpha = j[1]["throttle"];
+
+                              // Set latency value
+                              double latency = 0.100; // 100 milliseconds
+
+                              // Convert velocity from mph to m/s.
+                              v = v * 0.44704;
+
+                              // Change direction of delta (steering_angle)
+                              delta = -1 * delta;
 
                               /*
                               * TODO: Calculate steering angle and throttle using MPC.
@@ -107,10 +118,6 @@ int main() {
                                     ptsy[k] = x * sin(-psi) + y * cos(-psi);
                               }
 
-                              px = 0;
-                              py = 0;
-                              psi = 0;
-
                               // create an eigen vector for reference points
                               Eigen::VectorXd ptsxn = Eigen::VectorXd::Map(ptsx.data(), ptsx.size());
                               Eigen::VectorXd ptsyn = Eigen::VectorXd::Map(ptsy.data(), ptsy.size());
@@ -124,9 +131,18 @@ int main() {
                               // calculate the orientation error
                               double epsi = psi - atan(coeffs[1] + (2 * coeffs[2] * px) + (3 * coeffs[3] * (px*px)));
 
+                              // Predict future state with kinematic model and latency (100 milliseconds)
+                              double px_t1 = px + v * latency;
+                              double py_t1 = 0.0;
+                              double psi_t1 = 0.0;
+                              double v_t1 = v + alpha * latency;
+                              double cte_t1 = cte + v * sin(epsi) * latency;
+                              double epsi_t1 = epsi + (v / 2.67) * delta * latency;
+
                               // define the state vector (note that px, py and psi will always be zero)
+                              // state considered with 100ms of latency.
                               Eigen::VectorXd state(6);
-                              state << px, py, psi, v, cte, epsi;
+                              state << px_t1, 0.0, 0.0, v_t1, cte_t1, epsi_t1;
 
                               // Determine control values.
                               auto vars = mpc.Solve(state, coeffs);
@@ -138,7 +154,7 @@ int main() {
                               json msgJson;
                               // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
                               // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-                              msgJson["steering_angle"] = -steer_value;
+                              msgJson["steering_angle"] = -steer_value / deg2rad(25.0);
                               msgJson["throttle"] = throttle_value;
 
                               //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system

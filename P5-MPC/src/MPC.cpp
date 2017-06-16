@@ -24,17 +24,17 @@ const double Lf = 2.67;
 
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
-double ref_epsi = 0.0; //
+double ref_epsi = 0.0; //  Orientation Error
 double ref_vel = 36.0; // Reference velocity
 
-// Define Cost coefficients
-const double c_cte = 0.4;
-const double c_epsi = 0.32;
-const double c_vel = 0.261;
-const double c_throttle = 25.0;
-const double c_steering = 300.0;
-const double c_t_seq = 0.00001;
-const double c_s_seq = 0.01;
+// Define Cost coefficients (Set to 1.0)
+const double c_cte = 1.0;
+const double c_epsi = 1.0;
+const double c_vel = 1.0;
+const double c_throttle = 1.0;
+const double c_steering = 1.0;
+const double c_t_seq = 1.0;
+const double c_s_seq = 1.0; // Note: Reviewer noted this as the most important value to mod.
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.
@@ -124,16 +124,8 @@ public:
                   AD<double> f0 = coeffs[0] + coeffs[1] * x0 + coeffs[2] * x0 * x0 + coeffs[3] * x0 * x0 * x0;
                   AD<double> psides0 = CppAD::atan(coeffs[1] + (2 * coeffs[2] * x0) + (3 * coeffs[3] * (x0*x0)));
 
-                  // Here's `x` to get you started.
+                  // Calculate Residual from State Equations.
                   // The idea here is to constraint this value to be 0.
-                  //
-                  // Recall the equations for the model:
-                  // x_[t+1] = x[t] + v[t] * cos(psi[t]) * dt
-                  // y_[t+1] = y[t] + v[t] * sin(psi[t]) * dt
-                  // psi_[t+1] = psi[t] + v[t] / Lf * delta[t] * dt
-                  // v_[t+1] = v[t] + a[t] * dt
-                  // cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
-                  // epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
                   fg[2 + x_start + i] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
                   fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
                   fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
@@ -202,14 +194,6 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
             vars_lowerbound[i] = -1.0;
             vars_upperbound[i] = 1.0;
       }
-
-      // Set initial variables
-      vars[x_start] = x;
-      vars[y_start] = y;
-      vars[psi_start] = psi;
-      vars[v_start] = v;
-      vars[cte_start] = cte;
-      vars[epsi_start] = epsi;
 
       // Lower and upper limits for the constraints
       // Should be 0 besides initial state.
@@ -292,5 +276,5 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
       }
 
       // Return actuator values
-      return{solution.x[delta_start], solution.x[a_start]};
+      return{ solution.x[delta_start], solution.x[a_start] };
 }

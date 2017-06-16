@@ -139,7 +139,7 @@ int main() {
                               double cte_t1 = cte + v * sin(epsi) * latency;
                               double epsi_t1 = epsi + (v / 2.67) * delta * latency;
 
-                              // define the state vector (note that px, py and psi will always be zero)
+                              // define the state vector (py and psi will are always 0)
                               // state considered with 100ms of latency.
                               Eigen::VectorXd state(6);
                               state << px_t1, 0.0, 0.0, v_t1, cte_t1, epsi_t1;

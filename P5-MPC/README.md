@@ -96,7 +96,7 @@ Note: L_f measures the distance between the front of the vehicle and its center 
 Additionally, a set of limitations were placed on the steering angle and the acceleration parameters. The constraints represent the limitations of the car and are shown below.
 
 Actuator Constraints:
-- Steering Angle: [-30, 30] 
+- Steering Angle: [-25, 25] 
 - Acceleration (Throttle Parameter): [-1, 1]
 
 The steering angle of the car is limited by a maximum 30 degree travel and the throttle is controlled to a value of +/- 1. At 1, the throttle represents the maximum forward acceleration (-1 represents the maximum reverse throttle).

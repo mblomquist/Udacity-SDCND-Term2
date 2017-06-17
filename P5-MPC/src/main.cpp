@@ -120,7 +120,7 @@ int main() {
                               auto coeffs = polyfit(ptsxn, ptsyn, 3);
 
                               // calculate the cross track error
-                              //double cte = polyeval(coeffs, px) - py;
+                              //double cte = coeffs[0];
                               double cte = polyeval(coeffs, 0); // from overview video
 
                               // calculate the orientation error - current state
@@ -141,7 +141,7 @@ int main() {
                               // define the state vector (px, py, and psi are 0)
                               // state considered with 100ms of latency.
                               Eigen::VectorXd state(6);
-                              state <<px_t1, py_t1, psi_t1, v_t1, cte_t1, epsi_t1;
+                              state << px_t1, py_t1, psi_t1, v_t1, cte_t1, epsi_t1;
 
                               // Create next_x and next_y
                               vector<double> next_x_vals;
@@ -165,7 +165,7 @@ int main() {
                               json msgJson;
                               // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
                               // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-                              msgJson["steering_angle"] = -steer_value / (deg2rad(25.0)*2.67);
+                              msgJson["steering_angle"] = -steer_value / deg2rad(25.0);
                               msgJson["throttle"] = throttle_value;
 
                               //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system

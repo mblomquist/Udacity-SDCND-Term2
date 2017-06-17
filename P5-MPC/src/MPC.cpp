@@ -25,16 +25,16 @@ const double Lf = 2.67;
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
 double ref_epsi = 0.0; //  Orientation Error
-double ref_vel = 25.0; // Reference velocity
+double ref_vel = 10.0; // Reference velocity
 
 // Define Cost coefficients (Set to 1.0)
-const double c_cte = 1.0; // weights to CTE
-const double c_epsi = 1.0;
+const double c_cte = 0.35; // weights to CTE
+const double c_epsi = 10.0;
 const double c_vel = 1.0;
-const double c_throttle = 1.0;
-const double c_steering = 125.0; // higher is less turning
+const double c_throttle = 10.0;
+const double c_steering = 46.0; // higher is less turning
 const double c_t_seq = 1.0;
-const double c_s_seq = 1.0; // Note: Reviewer noted this as the most important value to mod.
+const double c_s_seq = 450.0; // Note: Reviewer noted this as the most important value to mod.
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.

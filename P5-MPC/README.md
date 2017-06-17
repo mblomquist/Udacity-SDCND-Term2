@@ -1,7 +1,7 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
 
---- 
+---
 
 # Compiler Build and Run Instructions
 
@@ -21,7 +21,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Run either `install-mac.sh` or `install-ubuntu.sh`.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
-    git clone https://github.com/uWebSockets/uWebSockets 
+    git clone https://github.com/uWebSockets/uWebSockets
     cd uWebSockets
     git checkout e94b6e1
     ```
@@ -33,7 +33,7 @@ Self-Driving Car Engineer Nanodegree Program
   * Mac: `brew install ipopt`
   * Linux
     * You will need a version of Ipopt 3.12.1 or higher. The version available through `apt-get` is 3.11.x. If you can get that version to work great but if not there's a script `install_ipopt.sh` that will install Ipopt. You just need to download the source from the Ipopt [releases page](https://www.coin-or.org/download/source/Ipopt/) or the [Github releases](https://github.com/coin-or/Ipopt/releases) page.
-    * Then call `install_ipopt.sh` with the source directory as the first argument, ex: `bash install_ipopt.sh Ipopt-3.12.1`. 
+    * Then call `install_ipopt.sh` with the source directory as the first argument, ex: `bash install_ipopt.sh Ipopt-3.12.1`.
   * Windows: TODO. If you can use the Linux subsystem and follow the Linux instructions.
 * [CppAD](https://www.coin-or.org/CppAD/)
   * Mac: `brew install cppad`
@@ -52,21 +52,21 @@ Self-Driving Car Engineer Nanodegree Program
 3. Compile: `cmake .. && make`
 4. Run it: `./mpc`.
 
---- 
+---
 
 # Model Predictive Controller
 ## Overview
 
 ![start](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/start.JPG?raw=true)
 
-This project consists of a model-predictive controller that is being used to control the throttle and steering of a car running in the Udacity Simulator. The model-predictive controller assumes a simplified kinematic model that can be manipulated through two actuators that control the acceleration (throttle) and the steering angle. A cost-function is applied to the kinematic model and the cross-track error is minimized to achieve a stable driving condition (i.e. the car stays on the track). 
+This project consists of a model-predictive controller that is being used to control the throttle and steering of a car running in the Udacity Simulator. The model-predictive controller assumes a simplified kinematic model that can be manipulated through two actuators that control the acceleration (throttle) and the steering angle. A cost-function is applied to the kinematic model and the cross-track error is minimized to achieve a stable driving condition (i.e. the car stays on the track).
 
 ## Model Implementation
 ### Kinematics
 
 A simplified kinematic model was implemented in the model predictive controller design that consists of the state equations listed below.
 
-State Equations: 
+State Equations:
 
 ```
 State - [x, y, psi, v]
@@ -87,7 +87,7 @@ The control parameters (actuators) integrate into the state equations by manipul
 
 Actuators: [delta, alpha]
 
-Where: 
+Where:
 - delta is the steering angle
 - alpha is the throttle control parameter (throttle/brake)
 
@@ -96,7 +96,7 @@ Note: L_f measures the distance between the front of the vehicle and its center 
 Additionally, a set of limitations were placed on the steering angle and the acceleration parameters. The constraints represent the limitations of the car and are shown below.
 
 Actuator Constraints:
-- Steering Angle: [-25, 25] 
+- Steering Angle: [-25, 25]
 - Acceleration (Throttle Parameter): [-1, 1]
 
 The steering angle of the car is limited by a maximum 25 degree travel and the throttle is controlled to a value of +/- 1. At 1, the throttle represents the maximum forward acceleration (-1 represents the maximum reverse throttle).
@@ -139,25 +139,25 @@ Note: Each of these functions penalize the vehicle for not maintaining the refer
 The references values for each of the cost functions can be seen below:
 ```
 double ref_cte = 0.0;  // Cross-track error (CTE)
-double ref_epsi = 0.0; //
-double ref_vel = 36.0; // Reference velocity
+double ref_epsi = 0.0; //  Orientation Error
+double ref_vel = 10.0; // Reference velocity
 ```
 
 The weights for each of the cost function were found through trial, error, and a bit of help from fellow Udacity students via slack. I've provided them below for reference:
 
 ```
-const double c_cte = 0.4;
-const double c_epsi = 0.32;
-const double c_vel = 0.261;
-const double c_throttle = 25.0;
-const double c_steering = 300.0;
-const double c_t_seq = 0.00001;
-const double c_s_seq = 0.01;
+const double c_cte = 0.35; // Weight of CTE Correction
+const double c_epsi = 10.0; // Weight of EPSI Correction
+const double c_vel = 1.0; // Weight of Velocity Correction
+const double c_throttle = 10.0; // Minimize Throttle Commands
+const double c_steering = 46.0; // Minimize Steering Commands
+const double c_t_seq = 1.0; // Minimize between Throttle Commands
+const double c_s_seq = 450.0; // Minimize between Steering Commands
 ```
 
 ### Constraints
 
-In order to bound the optimization process (to always find a solution), constraints were placed on each of the state and actuator parameters. Upper and lower bound were globally placed on each of these values of 1e19 and -1e19, respectively. These values are placed globally to gaurantee numerical stability in the solver. Furthermore, the actuator constraints were also placed on the steering and acceleration (throttle) parameters to match the limitations of the vehicle. 
+In order to bound the optimization process (to always find a solution), constraints were placed on each of the state and actuator parameters. Upper and lower bound were globally placed on each of these values of 1e19 and -1e19, respectively. These values are placed globally to gaurantee numerical stability in the solver. Furthermore, the actuator constraints were also placed on the steering and acceleration (throttle) parameters to match the limitations of the vehicle.
 
 ### Optimization Solver
 
@@ -172,7 +172,7 @@ CppAD::ipopt::solve<Dvector, FG_eval>(
 
 ### Trajectory Length and Time-step Duration (N and dt)
 
-In order to maintain computational efficiency, two parameters were implemented into the processing pipeline for determining the path length for the optimization code. These parameters N and dt represent the time step size (dt) and the number of time steps (N). The combination of these two parameters estimate the total length of the path for optimization through the state equations. 
+In order to maintain computational efficiency, two parameters were implemented into the processing pipeline for determining the path length for the optimization code. These parameters N and dt represent the time step size (dt) and the number of time steps (N). The combination of these two parameters estimate the total length of the path for optimization through the state equations.
 
 After trial and error modifications, the final values of N and dt were as follows:
 
@@ -196,8 +196,22 @@ This model is adapted from: // https://github.com/JuliaMath/Polynomials.jl/blob/
 In order to simulate real-world effects, a latency parameter was implemented in the data process flow that delays the time between determining a control parameter and implementing that control parameter on the vehicle. This delay simulates real world processing effects. The implementation of the latency parameter can be seen below.
 
 ```
-this_thread::sleep_for(chrono::milliseconds(100));
+// Set latency value
+double latency = 0.100; // 100 milliseconds
+
+// Predict future state with kinematic model and latency (100 milliseconds)
+double px_t1 = v * latency;
+double py_t1 = 0.0;
+double psi_t1 = (v / 2.67) * (-1 * delta) * latency;
+double v_t1 = v + alpha * latency;
+double cte_t1 = cte + v * sin(epsi) * latency;
+double epsi_t1 = epsi + (v / 2.67) * (-1 * delta) * latency;
 ```
+
+To account for latency, the future state of the vehicle was predicted using a value of 100 milliseconds (latency value). Additionally, predictions were made for the CTE and EPSI after 100 milliseconds by adding the current CTE and EPSI with the kinematic equations.
+
+Note: The initial values for x, y, and psi were 0 as they represent the current location of the vehicle.
+
 
 ## MPC Algorithm
 
@@ -215,7 +229,7 @@ Loop
 
 ## Results
 
-The MPC model ended up performing quite well after tuning the cost weights and time-step parameters. In straight-aways, the model performed in a similar way to the previous PID controller project. However, it is important to note that the MPC controller had to over come 100 milliseconds of latency (the PID controller did not). 
+The MPC model ended up performing quite well after tuning the cost weights and time-step parameters. In straight-aways, the model performed in a similar way to the previous PID controller project. However, it is important to note that the MPC controller had to over come 100 milliseconds of latency (the PID controller did not).
 
 ![mid](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/mid.JPG?raw=true)
 

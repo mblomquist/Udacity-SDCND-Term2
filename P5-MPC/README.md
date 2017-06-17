@@ -233,10 +233,14 @@ The MPC model ended up performing quite well after tuning the cost weights and t
 
 ![mid](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/mid.JPG?raw=true)
 
-In corners, the MPC ended up performing better than the PID controller and turned at a slow and methodical angle. This did run into a few close calls near the portion of the track that consists of sharp turns. The two examples below show a few close calls.
+Without taking into consideration the latency of the system, the vehicle wasn't able to safely make it around the track. There were a few areas where the car slightly went off the drivable portion of the road.
 
 ![wild1](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/wild1.JPG?raw=true)
 
 ![wild2](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/wild2.JPG?raw=true)
 
-In the end, the MPC controller made it around the track without actually leaving the drivable portion of the track, which is acceptable. However, further improvements can be made to fix these potential difficulties.
+Once latency compensation was added to the MPC and the model was re-tuned, the vehicle was able to safely make it around the track without any problems.
+
+![safe1](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/safe1.JPG?raw=true)
+
+![safe2](https://github.com/mblomquist/Udacity-SDCND-Term2/blob/master/P5-MPC/pics/safe2.JPG?raw=true)

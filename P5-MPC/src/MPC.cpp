@@ -8,7 +8,7 @@ using CppAD::AD;
 // TODO: Set the timestep length and duration
 // Set number of timesteps (N) and length of time per timestep (dt)
 size_t N = 8;
-double dt = 0.22;
+double dt = 0.17;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -25,16 +25,16 @@ const double Lf = 2.67;
 // Set error references values.
 double ref_cte = 0.0;  // Cross-track error (CTE)
 double ref_epsi = 0.0; //  Orientation Error
-double ref_vel = 36.0; // Reference velocity
+double ref_vel = 16.0; // Reference velocity
 
 // Define Cost coefficients (Set to 1.0)
-const double c_cte = 1.0;
-const double c_epsi = 1.0;
-const double c_vel = 1.0;
-const double c_throttle = 1.0;
-const double c_steering = 1.0;
-const double c_t_seq = 1.0;
-const double c_s_seq = 1.0; // Note: Reviewer noted this as the most important value to mod.
+const double c_cte = 0.19; // weights to CTE
+const double c_epsi = 17.0;
+const double c_vel = 0.261;
+const double c_throttle = 0.7;
+const double c_steering = 5.0; // higher is less turning
+const double c_t_seq = 10.0;
+const double c_s_seq = 1200.0; // Note: Reviewer noted this as the most important value to mod.
 
 // Create an index scheme for the optimization solver as the input
 // is a single vector.
@@ -276,5 +276,5 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
       }
 
       // Return actuator values
-      return{ solution.x[delta_start], solution.x[a_start] };
+      return{ solution.x[delta_start], solution.x[a_start]};
 }

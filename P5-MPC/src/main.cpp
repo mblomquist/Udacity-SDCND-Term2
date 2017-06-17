@@ -101,9 +101,6 @@ int main() {
                               // Convert velocity from mph to m/s.
                               v = v * 0.44704;
 
-                              // Change direction of delta (steering_angle)
-                              delta = -1 * delta;
-
                               /*
                               * TODO: Calculate steering angle and throttle using MPC.
                               *
@@ -132,17 +129,14 @@ int main() {
                               double epsi = psi - atan(coeffs[1] + (2 * coeffs[2] * px) + (3 * coeffs[3] * (px*px)));
 
                               // Predict future state with kinematic model and latency (100 milliseconds)
-                              double px_t1 = px + v * latency;
-                              double py_t1 = 0.0;
-                              double psi_t1 = 0.0;
                               double v_t1 = v + alpha * latency;
                               double cte_t1 = cte + v * sin(epsi) * latency;
-                              double epsi_t1 = epsi + (v / 2.67) * delta * latency;
+                              double epsi_t1 = epsi + (v / 2.67) * (-1 * delta) * latency;
 
-                              // define the state vector (py and psi will are always 0)
+                              // define the state vector (px, py, and psi are 0)
                               // state considered with 100ms of latency.
                               Eigen::VectorXd state(6);
-                              state << px_t1, 0.0, 0.0, v_t1, cte_t1, epsi_t1;
+                              state << 0.0, 0.0, 0.0, v_t1, cte_t1, epsi_t1;
 
                               // Determine control values.
                               auto vars = mpc.Solve(state, coeffs);
@@ -154,7 +148,7 @@ int main() {
                               json msgJson;
                               // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
                               // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-                              msgJson["steering_angle"] = -steer_value / deg2rad(25.0);
+                              msgJson["steering_angle"] = -1 * steer_value / deg2rad(25.0);
                               msgJson["throttle"] = throttle_value;
 
                               //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system

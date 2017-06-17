@@ -95,9 +95,6 @@ int main() {
                               double delta = j[1]["steering_angle"];
                               double alpha = j[1]["throttle"];
 
-                              // Set latency value
-                              double latency = 0.100; // 100 milliseconds
-
                               // Convert velocity from mph to m/s.
                               v = v * 0.44704;
 
@@ -111,8 +108,8 @@ int main() {
                               for (int k = 0; k<ptsx.size(); k++) {
                                     double x = ptsx[k] - px;
                                     double y = ptsy[k] - py;
-                                    ptsx[k] = x * cos(-psi) - y * sin(-psi);
-                                    ptsy[k] = x * sin(-psi) + y * cos(-psi);
+                                    ptsx[k] = x * cos(0-psi) - y * sin(0-psi);
+                                    ptsy[k] = x * sin(0-psi) + y * cos(0-psi);
                               }
 
                               // create an eigen vector for reference points
@@ -123,12 +120,20 @@ int main() {
                               auto coeffs = polyfit(ptsxn, ptsyn, 3);
 
                               // calculate the cross track error
-                              double cte = polyeval(coeffs, px) - py;
+                              //double cte = polyeval(coeffs, px) - py;
+                              double cte = polyeval(coeffs, 0); // from overview video
 
-                              // calculate the orientation error
-                              double epsi = psi - atan(coeffs[1] + (2 * coeffs[2] * px) + (3 * coeffs[3] * (px*px)));
+                              // calculate the orientation error - current state
+                              //double epsi = psi - atan(coeffs[1] + (2 * coeffs[2] * px) + (3 * coeffs[3] * (px*px)));
+                              double epsi = -atan(coeffs[1]);
+
+                              // Set latency value
+                              double latency = 0.100; // 100 milliseconds
 
                               // Predict future state with kinematic model and latency (100 milliseconds)
+                              double px_t1 = v * latency;
+                              double py_t1 = 0.0;
+                              double psi_t1 = (v / 2.67) * (-1 * delta) * latency;
                               double v_t1 = v + alpha * latency;
                               double cte_t1 = cte + v * sin(epsi) * latency;
                               double epsi_t1 = epsi + (v / 2.67) * (-1 * delta) * latency;
@@ -136,7 +141,19 @@ int main() {
                               // define the state vector (px, py, and psi are 0)
                               // state considered with 100ms of latency.
                               Eigen::VectorXd state(6);
-                              state << 0.0, 0.0, 0.0, v_t1, cte_t1, epsi_t1;
+                              state <<px_t1, py_t1, psi_t1, v_t1, cte_t1, epsi_t1;
+
+                              // Create next_x and next_y
+                              vector<double> next_x_vals;
+                              vector<double> next_y_vals;
+
+                              // Evaluate next_x, next_y
+                              double poly_inc = 2.0;
+                              int num_points = 15;
+                              for (int i = 1; i < num_points; i++){
+                                next_x_vals.push_back(poly_inc*i);
+                                next_y_vals.push_back(polyeval(coeffs, poly_inc*i));
+                              }
 
                               // Determine control values.
                               auto vars = mpc.Solve(state, coeffs);
@@ -148,7 +165,7 @@ int main() {
                               json msgJson;
                               // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
                               // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
-                              msgJson["steering_angle"] = -1 * steer_value / deg2rad(25.0);
+                              msgJson["steering_angle"] = -steer_value / (deg2rad(25.0)*2.67);
                               msgJson["throttle"] = throttle_value;
 
                               //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
@@ -160,8 +177,8 @@ int main() {
                               //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
                               // the points in the simulator are connected by a Yellow line
 
-                              msgJson["next_x"] = ptsx;
-                              msgJson["next_y"] = ptsy;
+                              msgJson["next_x"] = next_x_vals;
+                              msgJson["next_y"] = next_y_vals;
 
 
                               auto msg = "42[\"steer\"," + msgJson.dump() + "]";

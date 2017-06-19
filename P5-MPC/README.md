@@ -3,7 +3,7 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## Write Up
 
-For see WRITEUP.md for project description.
+See WRITEUP.md for project description.
 
 ---
 

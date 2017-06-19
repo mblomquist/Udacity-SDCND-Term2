@@ -155,6 +155,8 @@ const double c_t_seq = 1.0; // Minimize between Throttle Commands
 const double c_s_seq = 450.0; // Minimize between Steering Commands
 ```
 
+The c_throttle parameter ended up fixing most of the issues I had. By increasing that value, I could keep a constant speed allowing the predicitive controller to better approximate where the car would be.
+
 ### Constraints
 
 In order to bound the optimization process (to always find a solution), constraints were placed on each of the state and actuator parameters. Upper and lower bound were globally placed on each of these values of 1e19 and -1e19, respectively. These values are placed globally to gaurantee numerical stability in the solver. Furthermore, the actuator constraints were also placed on the steering and acceleration (throttle) parameters to match the limitations of the vehicle.
